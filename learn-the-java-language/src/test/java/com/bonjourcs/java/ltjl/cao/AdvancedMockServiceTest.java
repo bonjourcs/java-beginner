@@ -3,6 +3,7 @@ package com.bonjourcs.java.ltjl.cao;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -75,4 +76,23 @@ public class AdvancedMockServiceTest {
                 .forEach(System.out::println);
     }
 
+    @Test
+    public void testCompareByName() {
+
+        MockObject[] mockObjects = new MockObject[3];
+        mockObjects[0]
+                = new MockObject(MockObject.Color.GREEN, "hat", 1, 1);
+        mockObjects[1]
+                = new MockObject(MockObject.Color.GREEN, "cup", 1, 1);
+        mockObjects[2]
+                = new MockObject(MockObject.Color.GREEN, "mouse", 1, 1);
+
+        // instance method reference
+        Arrays.sort(mockObjects, new AdvancedMockService()::compareByName);
+        for (MockObject mockObject :
+                mockObjects) {
+            System.out.println(mockObject);
+        }
+
+    }
 }

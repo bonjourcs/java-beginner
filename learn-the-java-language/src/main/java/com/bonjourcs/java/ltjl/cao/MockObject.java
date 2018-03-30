@@ -23,10 +23,20 @@ public class MockObject {
         this.weight = weight;
     }
 
+    public MockObject(Color color, String name, int length, int weight) {
+        this(color, length, weight);
+        this.name = name;
+    }
+
     /**
      * color of mock object
      */
     private Color color;
+
+    /**
+     * name of mock object
+     */
+    private String name;
 
     /**
      * length of mock object
@@ -38,10 +48,12 @@ public class MockObject {
      */
     private int weight;
 
+
     @Override
     public String toString() {
         return "MockObject{" +
                 "color=" + color +
+                ", name='" + name + '\'' +
                 ", length=" + length +
                 ", weight=" + weight +
                 '}';
@@ -69,5 +81,13 @@ public class MockObject {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

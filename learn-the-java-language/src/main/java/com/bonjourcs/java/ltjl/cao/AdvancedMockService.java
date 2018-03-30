@@ -67,4 +67,15 @@ public class AdvancedMockService {
 
     }
 
+    /**
+     * compare object by name
+     *
+     * @param object1 object 1
+     * @param object2 object 2
+     * @return differences between two objects
+     */
+    public int compareByName(MockObject object1, MockObject object2) {
+        return object1.getName().compareTo(object2.getName());
+    }
+
 }
