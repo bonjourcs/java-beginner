@@ -1,6 +1,6 @@
 # Java Beginner
 
-Exercise codes base on [The Java Tutorials](https://docs.oracle.com/javase/tutorial/).
+Exercise code base on [The Java Tutorials](https://docs.oracle.com/javase/tutorial/).
 
 # Modules
 
