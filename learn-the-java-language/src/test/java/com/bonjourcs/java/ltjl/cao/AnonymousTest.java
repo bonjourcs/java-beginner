@@ -2,8 +2,6 @@ package com.bonjourcs.java.ltjl.cao;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Liang Chenghao
  * Description: test for class Anonymous
@@ -14,7 +12,9 @@ public class AnonymousTest {
     @Test
     public void testGreet() {
         Anonymous anonymous = new Anonymous();
-        anonymous.greet();
+        anonymous.greet("TX", name -> {
+            System.out.println("Hello: " + name);
+        });
     }
 
 }
