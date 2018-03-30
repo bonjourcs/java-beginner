@@ -1,6 +1,6 @@
 # Learn The Java Language
 
-Codes base on [The Java Tutorials - Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/index.html). 
+Code based on [The Java Tutorials - Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/index.html). 
 
 # Project Structure
 
