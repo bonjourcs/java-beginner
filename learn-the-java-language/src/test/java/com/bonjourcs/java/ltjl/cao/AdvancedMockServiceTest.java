@@ -32,4 +32,22 @@ public class AdvancedMockServiceTest {
         );
 
     }
+
+    @Test
+    public void testPrintMockObject1() {
+
+        List<MockObject> mockObjects
+                = new ArrayList<>(3);
+        mockObjects.add(new MockObject(MockObject.Color.GREEN, 10, 10));
+        mockObjects.add(new MockObject(MockObject.Color.GREEN, 10, 5));
+        mockObjects.add(new MockObject(MockObject.Color.YELLOW, 10, 10));
+
+        AdvancedMockService advancedMockService = new AdvancedMockService();
+        advancedMockService.printMockObject(mockObjects,
+                mockObject -> mockObject.getLength() > 5
+                        && mockObject.getWeight() > 5
+                        && mockObject.getColor() == MockObject.Color.GREEN,
+                mockObject -> System.out.println(mockObject));
+    }
+
 }
