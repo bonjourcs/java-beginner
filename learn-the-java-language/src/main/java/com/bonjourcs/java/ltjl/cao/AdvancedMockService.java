@@ -2,6 +2,7 @@ package com.bonjourcs.java.ltjl.cao;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -42,6 +43,28 @@ public class AdvancedMockService {
                 consumer.accept(mockObject);
             }
         }
+    }
+
+    /**
+     * print gender of filtered object
+     *
+     * @param mockObjects objects to be filtered
+     * @param predicate   object filter
+     * @param function    function to get gender
+     * @param gender      gender to print
+     */
+    public void printGender(List<MockObject> mockObjects,
+                            Predicate<MockObject> predicate,
+                            Function<MockObject, String> function,
+                            Consumer<String> gender) {
+
+        for (MockObject mo : mockObjects) {
+            if (predicate.test(mo)) {
+                String g = function.apply(mo);
+                gender.accept(g);
+            }
+        }
+
     }
 
 }

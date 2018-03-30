@@ -50,4 +50,24 @@ public class AdvancedMockServiceTest {
                 mockObject -> System.out.println(mockObject));
     }
 
+    @Test
+    public void testPrintGender() {
+
+        List<MockObject> mockObjects
+                = new ArrayList<>(3);
+        mockObjects.add(new MockObject(MockObject.Color.GREEN, 10, 10));
+        mockObjects.add(new MockObject(MockObject.Color.GREEN, 10, 5));
+        mockObjects.add(new MockObject(MockObject.Color.YELLOW, 10, 10));
+
+        AdvancedMockService advancedMockService = new AdvancedMockService();
+
+        advancedMockService.printGender(mockObjects,
+                mockObject -> mockObject.getWeight() > 5
+                        && mockObject.getLength() > 5
+                        && mockObject.getColor() == MockObject.Color.GREEN,
+                mockObject -> mockObject.getColor().toString(),
+                g -> System.out.println(g));
+
+    }
+
 }
