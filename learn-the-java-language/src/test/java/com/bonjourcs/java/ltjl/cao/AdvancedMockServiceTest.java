@@ -47,7 +47,7 @@ public class AdvancedMockServiceTest {
                 mockObject -> mockObject.getLength() > 5
                         && mockObject.getWeight() > 5
                         && mockObject.getColor() == MockObject.Color.GREEN,
-                mockObject -> System.out.println(mockObject));
+                System.out::println);
     }
 
     @Test
@@ -66,15 +66,15 @@ public class AdvancedMockServiceTest {
                         && mockObject.getLength() > 5
                         && mockObject.getColor() == MockObject.Color.GREEN,
                 mockObject -> mockObject.getColor().toString(),
-                g -> System.out.println(g));
+                System.out::println);
 
         // another form
         mockObjects.stream()
                 .filter(mockObject -> mockObject.getLength() > 5
                         && mockObject.getWeight() > 5
                         && mockObject.getColor() == MockObject.Color.GREEN)
-                .map(mockObject -> mockObject.getColor())
-                .forEach(g -> System.out.println(g));
+                .map(MockObject::getColor)
+                .forEach(System.out::println);
     }
 
 }
