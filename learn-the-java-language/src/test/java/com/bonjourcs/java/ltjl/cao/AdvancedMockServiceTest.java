@@ -68,6 +68,11 @@ public class AdvancedMockServiceTest {
                 mockObject -> mockObject.getColor().toString(),
                 g -> System.out.println(g));
 
+        // another formal
+        mockObjects.stream().
+                filter(p -> p.getWeight() > 5 && p.getLength() > 5 && p.getColor() == MockObject.Color.GREEN)
+                .map(p -> p.getColor())
+                .forEach(color -> System.out.println(color));
     }
 
 }
