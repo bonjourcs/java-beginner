@@ -12,9 +12,9 @@ public class AnonymousTest {
     @Test
     public void testGreet() {
         Anonymous anonymous = new Anonymous();
-        anonymous.greet("TX", name -> {
-            System.out.println("Hello: " + name);
-        });
+        anonymous.greet("TX", name ->
+            System.out.println("Hello: " + name)
+        );
     }
 
 }
