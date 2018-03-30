@@ -5,8 +5,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Liang Chenghao
  * Description:
@@ -24,11 +22,24 @@ public class MockServiceTest {
         mockObjects.add(new MockObject(MockObject.Color.YELLOW, 10, 10));
 
         MockService mockService = new MockService();
+
+        // specify search criteria
+        mockService.printMockObject(mockObjects, new MockInterface() {
+            @Override
+            public boolean filterMockObject(MockObject mockObject) {
+                return mockObject.getWeight() > 5
+                        && mockObject.getLength() > 5
+                        && mockObject.getColor() == MockObject.Color.GREEN;
+            }
+        });
+
+        // the following code is equivalent to code above
         mockService.printMockObject(mockObjects,
                 mockObject ->
                         mockObject.getWeight() > 5
-                                && mockObject.getWeight() > 5
+                                && mockObject.getLength() > 5
                                 && mockObject.getColor() == MockObject.Color.GREEN);
+
     }
 
 }
