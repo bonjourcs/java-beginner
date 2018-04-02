@@ -11,4 +11,23 @@ public class Son extends Father {
         super(familyName);
     }
 
+    /**
+     * override
+     *
+     * @param name
+     * @param age
+     */
+    @Override
+    void doSomething(String name, int age) {
+
+    }
+
+    /**
+     * not override
+     *
+     * @param age
+     * @param name
+     */
+    void doSomething(int age, String name) {
+    }
 }

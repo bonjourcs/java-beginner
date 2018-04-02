@@ -20,4 +20,8 @@ public class Father {
         System.out.println(familyName);
     }
 
+    void doSomething(String name, int age) {
+        // do something
+    }
+
 }
