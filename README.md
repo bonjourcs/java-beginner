@@ -1,4 +1,5 @@
 # Java Beginner
+[![Build Status](https://travis-ci.org/bonjourcs/java-beginner.svg?branch=master)](https://travis-ci.org/bonjourcs/java-beginner)
 
 Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutorial/).
 
