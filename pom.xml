@@ -8,6 +8,8 @@
     <artifactId>java-beginner</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>pom</packaging>
+
     <modules>
         <module>learn-the-java-language</module>
     </modules>
