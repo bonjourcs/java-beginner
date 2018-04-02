@@ -24,4 +24,6 @@ public class Father {
         // do something
     }
 
+    static void foo(String name){}
+
 }

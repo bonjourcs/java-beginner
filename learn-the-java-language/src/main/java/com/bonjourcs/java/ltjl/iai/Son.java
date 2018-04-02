@@ -30,4 +30,10 @@ public class Son extends Father {
      */
     void doSomething(int age, String name) {
     }
+
+    // instance method cannot 'override' static method in superclass
+//    void foo(String name){
+//
+//    }
+
 }
