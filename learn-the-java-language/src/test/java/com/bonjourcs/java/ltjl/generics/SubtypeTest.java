@@ -28,7 +28,7 @@ public class SubtypeTest {
         // invalid
 //        list1.add(new Fruit());
         list1.add(new Pineapple());
-
+        Fruit fruit = (Fruit)list1.get(0);
 
     }
 
