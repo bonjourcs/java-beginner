@@ -6,6 +6,7 @@ Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutor
 # Modules
 
 - Learn The Java Language
+- Essential Java Classes
 
 # License
 
