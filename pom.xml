@@ -12,6 +12,7 @@
 
     <modules>
         <module>learn-the-java-language</module>
+        <module>essential-java-classes</module>
     </modules>
 
     <dependencies>
