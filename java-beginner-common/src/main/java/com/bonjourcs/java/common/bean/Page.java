@@ -10,9 +10,9 @@ import java.util.List;
 public class Page<T> {
 
     /**
-     * data list
+     * list list
      */
-    private List<T> data;
+    private List<T> list;
     /**
      * current page number
      */
@@ -49,18 +49,18 @@ public class Page<T> {
     }
 
     /**
-     * set paging data
+     * set paging list
      *
-     * @param data data list
+     * @param list list list
      * @return this
      */
-    public Page<T> setData(List<T> data) {
-        this.data = data;
+    public Page<T> setList(List<T> list) {
+        this.list = list;
         return this;
     }
 
-    public List<T> getData() {
-        return data;
+    public List<T> getList() {
+        return list;
     }
 
     public int getPage() {
@@ -82,7 +82,7 @@ public class Page<T> {
     @Override
     public String toString() {
         return "Page{" +
-                "data=" + data +
+                "list=" + list +
                 ", page=" + page +
                 ", size=" + size +
                 ", totalItems=" + totalItems +
