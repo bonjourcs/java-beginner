@@ -19,6 +19,10 @@ public class TryWithResourceTest {
         try {
             TryWithResource.readFile("out_file.txt");
         } catch (IOException e) {
+            // get suppressed exceptions from try-with-resource statement
+            for (Throwable throwable : e.getSuppressed()) {
+                System.out.println(throwable.getMessage());
+            }
             e.printStackTrace();
         }
 
