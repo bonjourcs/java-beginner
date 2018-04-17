@@ -11,21 +11,21 @@ import java.util.List;
  * Description:
  * Date: 2018/4/9
  */
-public class PageTest {
+public class PageObjectTest {
 
     @Test
     public void testPagingObject() {
 
-        Page<String> page = init();
-        System.out.println(JSON.toJSONString(page));
+        PageObject<String> pageObject = init();
+        System.out.println(JSON.toJSONString(pageObject));
 
     }
 
     @Test
     public void testRetData() {
 
-        RetObject<Page<String>> retObject = RetObject.success();
-        Page<String> data = init();
+        RetObject<PageObject<String>> retObject = RetObject.success();
+        PageObject<String> data = init();
         retObject.setRetData(data);
         retObject.setRetMsg("响应成功");
 
@@ -37,18 +37,18 @@ public class PageTest {
      *
      * @return a paging object with 100 items and paging parameters are 1 and 3
      */
-    private Page<String> init() {
+    private PageObject<String> init() {
 
-        Page<String> page = new Page<>();
+        PageObject<String> pageObject = new PageObject<>();
 
         List<String> strings = new ArrayList<>();
         strings.add("AAA");
         strings.add("BBB");
         strings.add("CCC");
 
-        page.init(1, 3, 100)
+        pageObject.init(1, 3, 100)
                 .setList(strings);
 
-        return page;
+        return pageObject;
     }
 }

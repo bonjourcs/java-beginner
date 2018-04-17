@@ -7,7 +7,7 @@ import java.util.List;
  * Description: pagination class
  * Date: 2018/4/9
  */
-public class Page<T> {
+public class PageObject<T> {
 
     /**
      * list list
@@ -30,7 +30,7 @@ public class Page<T> {
      */
     private int totalPages;
 
-    public Page() {
+    public PageObject() {
     }
 
     /**
@@ -41,7 +41,7 @@ public class Page<T> {
      * @param totalItems parameter total items
      * @return this
      */
-    public Page<T> init(int page, int size, int totalItems) {
+    public PageObject<T> init(int page, int size, int totalItems) {
         this.page = page;
         this.size = size;
         this.totalItems = totalItems;
@@ -54,7 +54,7 @@ public class Page<T> {
      * @param list list list
      * @return this
      */
-    public Page<T> setList(List<T> list) {
+    public PageObject<T> setList(List<T> list) {
         this.list = list;
         return this;
     }
@@ -81,7 +81,7 @@ public class Page<T> {
 
     @Override
     public String toString() {
-        return "Page{" +
+        return "PageObject{" +
                 "list=" + list +
                 ", page=" + page +
                 ", size=" + size +
