@@ -19,21 +19,26 @@ public class Person {
      */
     private String name;
     /**
-     * birth of person
+     * mark date of person
      */
-    private LocalDate birthData;
+    private LocalDate markDate;
     /**
      * sex of person
      */
     private Sex sex;
+    /**
+     * age of person
+     */
+    private int age;
 
     public Person() {
     }
 
-    public Person(String name, LocalDate birthData, Sex sex) {
+    public Person(String name, LocalDate markDate, Sex sex, int age) {
         this.name = name;
-        this.birthData = birthData;
+        this.markDate = markDate;
         this.sex = sex;
+        this.age = age;
     }
 
     /**

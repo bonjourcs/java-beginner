@@ -23,8 +23,14 @@ public class PersonListTest {
 
         PersonList personList = new PersonList();
 
-        personList.add(new Person("Kim", LocalDate.now(), Person.Sex.MALE));
-        personList.add(new Person("Jane", LocalDate.now(), Person.Sex.FEMALE));
+        personList.add(new Person("Kim", LocalDate.now(),
+                Person.Sex.MALE, 20));
+        personList.add(new Person("Jane", LocalDate.now(),
+                Person.Sex.FEMALE, 22));
+        personList.add(new Person("John", LocalDate.now(),
+                Person.Sex.MALE, 22));
+        personList.add(new Person("Alex", LocalDate.now(),
+                Person.Sex.FEMALE, 22));
 
         return personList;
 
@@ -38,10 +44,16 @@ public class PersonListTest {
     }
 
     @Test
-    public void testPrintMaleName(){
+    public void testPrintMaleName() {
         System.out.println("Only print male's name: ");
         PersonList personList = initPersonList();
         personList.printMaleName();
+    }
+
+    @Test
+    public void testGetMaleAverageAge() {
+        PersonList personList = initPersonList();
+        System.out.println("Average age: " + personList.getMaleAverageAge());
     }
 
 }

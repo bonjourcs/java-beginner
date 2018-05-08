@@ -1,7 +1,5 @@
 package com.bonjourcs.java.jc.aggregate;
 
-import com.bonjourcs.java.jc.aggregate.Person;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +30,18 @@ public class PersonList {
         people.stream()
                 .filter(e -> e.getSex() == Person.Sex.MALE)
                 .forEach(e -> System.out.println(e.getName()));
+    }
+
+    /**
+     * get average age of male people
+     * @return average age
+     */
+    public double getMaleAverageAge(){
+        return people.stream()
+                .filter(e -> e.getSex() == Person.Sex.MALE)
+                .mapToInt(Person::getAge)
+                .average()
+                .getAsDouble();
     }
 
 }
