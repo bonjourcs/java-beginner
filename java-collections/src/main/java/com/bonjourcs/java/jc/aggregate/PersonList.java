@@ -47,12 +47,24 @@ public class PersonList {
 
     /**
      * get total age of person
+     *
      * @return total age
      */
     public int getTotalAge() {
         return people.stream()
                 .map(Person::getAge)
                 .reduce(0, (a, b) -> a + b);
+    }
+
+    /**
+     * get average age
+     * @return average age
+     */
+    public double getAverageAge() {
+        return people.stream()
+                .map(Person::getAge)
+                .collect(Averager::new, Averager::accept, Averager::combine)
+                .average();
     }
 
 }
