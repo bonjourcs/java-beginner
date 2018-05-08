@@ -9,6 +9,7 @@ Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutor
 - Learn The Java Language
 - Essential Java Classes
 - Java Playground
+- Java Collections
 
 # License
 

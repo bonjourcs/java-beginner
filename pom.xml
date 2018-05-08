@@ -15,6 +15,7 @@
         <module>essential-java-classes</module>
         <module>java-beginner-common</module>
         <module>java-playground</module>
+        <module>java-collections</module>
     </modules>
 
     <dependencies>
