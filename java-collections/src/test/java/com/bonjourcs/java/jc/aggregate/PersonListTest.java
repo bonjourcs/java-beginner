@@ -56,4 +56,10 @@ public class PersonListTest {
         System.out.println("Average age: " + personList.getMaleAverageAge());
     }
 
+    @Test
+    public void testGetTotalAge() {
+        PersonList personList = initPersonList();
+        System.out.println("Total age: " + personList.getTotalAge());
+    }
+
 }

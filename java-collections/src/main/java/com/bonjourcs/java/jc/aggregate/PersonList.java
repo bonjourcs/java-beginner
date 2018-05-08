@@ -34,14 +34,25 @@ public class PersonList {
 
     /**
      * get average age of male people
+     *
      * @return average age
      */
-    public double getMaleAverageAge(){
+    public double getMaleAverageAge() {
         return people.stream()
                 .filter(e -> e.getSex() == Person.Sex.MALE)
                 .mapToInt(Person::getAge)
                 .average()
                 .getAsDouble();
+    }
+
+    /**
+     * get total age of person
+     * @return total age
+     */
+    public int getTotalAge() {
+        return people.stream()
+                .map(Person::getAge)
+                .reduce(0, (a, b) -> a + b);
     }
 
 }
