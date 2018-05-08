@@ -2,6 +2,8 @@ package com.bonjourcs.java.jc.aggregate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Liang Chenghao
@@ -58,6 +60,7 @@ public class PersonList {
 
     /**
      * get average age
+     *
      * @return average age
      */
     public double getAverageAge() {
@@ -65,6 +68,16 @@ public class PersonList {
                 .map(Person::getAge)
                 .collect(Averager::new, Averager::accept, Averager::combine)
                 .average();
+    }
+
+    /**
+     * sort by age
+     *
+     * @return map
+     */
+    public Map<Person.Sex, List<Person>> sortByGender() {
+        return people.stream()
+                .collect(Collectors.groupingBy(Person::getSex));
     }
 
 }
