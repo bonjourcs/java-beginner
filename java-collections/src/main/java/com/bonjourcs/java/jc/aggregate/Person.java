@@ -1,7 +1,6 @@
 package com.bonjourcs.java.jc.aggregate;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
@@ -10,8 +9,7 @@ import java.time.LocalDate;
  * Description: class Person to invoke aggregate operation
  * Date: 2018/5/8
  */
-@Getter
-@Setter
+@Data
 public class Person {
 
     /**

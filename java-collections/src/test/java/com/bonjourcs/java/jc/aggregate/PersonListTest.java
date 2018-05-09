@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -31,6 +32,8 @@ public class PersonListTest {
                 Person.Sex.MALE, 22));
         personList.add(new Person("Alex", LocalDate.now(),
                 Person.Sex.FEMALE, 22));
+        personList.add(new Person("Bob", LocalDate.now(),
+                Person.Sex.MALE, 14));
 
         return personList;
 
@@ -63,9 +66,24 @@ public class PersonListTest {
     }
 
     @Test
-    public void testAverageAge(){
+    public void testAverageAge() {
         PersonList personList = initPersonList();
-        System.out.println("Average age: "+ personList.getAverageAge());
+        System.out.println("Average age: " + personList.getAverageAge());
     }
 
+    @Test
+    public void testSortByGender() {
+
+        PersonList personList = initPersonList();
+
+        Map<Person.Sex, List<Person>> sortedMap
+                = personList.sortByGender();
+
+        // show elements
+        System.out.println("Males: ");
+        sortedMap.get(Person.Sex.MALE).forEach(System.out::println);
+        System.out.println("Females: ");
+        sortedMap.get(Person.Sex.FEMALE).forEach(System.out::println);
+
+    }
 }
