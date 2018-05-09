@@ -101,4 +101,17 @@ public class PersonListTest {
         sortedMap.get(Person.Sex.FEMALE).forEach(System.out::println);
 
     }
+    
+    @Test
+    public void testAgeByGender(){
+
+        PersonList personList = initPersonList();
+
+        Map<Person.Sex, Integer> sortedMap
+                = personList.totalAgeByGender();
+
+        System.out.println("Males' total age: " + sortedMap.get(Person.Sex.MALE));
+        System.out.println("Females' total age: " + sortedMap.get(Person.Sex.FEMALE));
+
+    }
 }

@@ -98,4 +98,17 @@ public class PersonList {
                 );
     }
 
+    /**
+     * get total age by gender
+     *
+     * @return map
+     */
+    public Map<Person.Sex, Integer> totalAgeByGender() {
+        return people.stream()
+                .collect(Collectors.groupingBy(
+                        Person::getSex,
+                        Collectors.reducing(0, Person::getAge, Integer::sum)
+                ));
+    }
+
 }
