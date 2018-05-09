@@ -80,4 +80,22 @@ public class PersonList {
                 .collect(Collectors.groupingBy(Person::getSex));
     }
 
+    /**
+     * sort name by age
+     *
+     * @return map
+     */
+    public Map<Person.Sex, List<String>> namesByGender() {
+        return people.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person::getSex,
+                                Collectors.mapping(
+                                        Person::getName,
+                                        Collectors.toList()
+                                )
+                        )
+                );
+    }
+
 }

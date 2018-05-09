@@ -86,4 +86,19 @@ public class PersonListTest {
         sortedMap.get(Person.Sex.FEMALE).forEach(System.out::println);
 
     }
+
+    @Test
+    public void testNamesByGender() {
+
+        PersonList personList = initPersonList();
+
+        Map<Person.Sex, List<String>> sortedMap
+                = personList.namesByGender();
+
+        System.out.println("Males: ");
+        sortedMap.get(Person.Sex.MALE).forEach(System.out::println);
+        System.out.println("Females: ");
+        sortedMap.get(Person.Sex.FEMALE).forEach(System.out::println);
+
+    }
 }
