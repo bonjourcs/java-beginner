@@ -2,6 +2,7 @@ package com.bonjourcs.java.jc.aggregate.stream;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
@@ -26,4 +27,14 @@ public class CreateStreamTest {
         new CreateStream().showStream("upper string stream", stringStream.map(String::toUpperCase), 10);
     }
 
+    @Test
+    public void testIterateStream() {
+
+        // reduction operation will generate a list
+        Arrays.asList(Stream.iterate(1, p -> p * 2)
+                .peek(e -> System.out.println("generate element : " + e))
+                .limit(10)
+                .toArray())
+                .forEach(System.out::println);
+    }
 }
