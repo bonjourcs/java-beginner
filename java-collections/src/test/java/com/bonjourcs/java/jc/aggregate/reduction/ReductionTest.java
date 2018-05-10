@@ -32,4 +32,9 @@ public class ReductionTest {
         );
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testOptional() {
+        Stream.of("Hi", "world").filter(e -> e.startsWith("Q")).findAny().orElseThrow(RuntimeException::new);
+    }
+
 }
