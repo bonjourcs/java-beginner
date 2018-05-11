@@ -3,6 +3,7 @@ package com.bonjourcs.java.jc.aggregate.reduction;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -44,8 +45,19 @@ public class ReductionTest {
      * find and print specific string
      */
     @Test
-    public void testPresent(){
+    public void testPresent() {
         Stream.of("Hi", "World", "Kernel").filter(s -> s.startsWith("H")).findAny().ifPresent(System.out::println);
+    }
+
+    /**
+     * collect operation test
+     */
+    @Test
+    public void testCollection() {
+        System.out.println(Stream.of("Hello", "World", "I", "am", "coming")
+                .map(String::toUpperCase)
+                .collect(Collectors.joining("-")));
+        Stream.iterate(1, e-> e+1).limit(10).forEach(System.out::println);
     }
 
 }
