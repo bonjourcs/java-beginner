@@ -32,9 +32,20 @@ public class ReductionTest {
         );
     }
 
+    /**
+     * test findAny with throwing exception
+     */
     @Test(expected = RuntimeException.class)
     public void testOptional() {
         Stream.of("Hi", "world").filter(e -> e.startsWith("Q")).findAny().orElseThrow(RuntimeException::new);
+    }
+
+    /**
+     * find and print specific string
+     */
+    @Test
+    public void testPresent(){
+        Stream.of("Hi", "World", "Kernel").filter(s -> s.startsWith("H")).findAny().ifPresent(System.out::println);
     }
 
 }
