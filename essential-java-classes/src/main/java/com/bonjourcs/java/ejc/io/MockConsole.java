@@ -5,39 +5,87 @@ import java.util.Scanner;
 
 /**
  * @author Liang Chenghao
- * Description: a mock console application
+ * Description: a mock console application which emulates Linux ternimal
  * Date: 2018/5/15
  */
 public class MockConsole {
 
+	/**
+	 * exit operation
+	 */
 	private static final String EXIT = "exit";
+	/**
+	 * clear operation
+	 */
 	private static final String CLEAR = "clear";
+	/**
+	 * su operation
+	 */
 	private static final String SU = "su";
+	/**
+	 * clear rows
+	 */
 	private static final int ROW = 5;
-	private static final Scanner in = new Scanner(System.in);
+	/**
+	 * scanner to receive input
+	 */
+	private static final Scanner SCANNER = new Scanner(System.in);
+	/**
+	 * root password
+	 */
 	private static final String ROOT_PASSWORD = "ROOT";
+	/**
+	 * current user
+	 */
+	private static boolean isRoot = false;
+	/**
+	 * root session count
+	 */
+	private static int count = 0;
 
 	public static void main(String[] args) {
 
 		// show login banner
 		login();
 
-		preNormal();
+		// normal user login
+		preNormal(RoleEnum.NORMAL);
 
 	}
 
-	private static void preNormal() {
-		System.out.print("[bonjourcs@localhost ~]$ ");
-
+	/**
+	 * loop info
+	 *
+	 * @param role login user role
+	 */
+	private static void preNormal(RoleEnum role) {
+		infoBanner(role);
 		String str;
-		while ((str = in.next()) != null) {
-			// handle input string
-			handle(str);
+		while ((str = SCANNER.next()) != null) {
+			handle(role, str);
 		}
 	}
 
 	/**
-	 * login banner
+	 * show user info
+	 *
+	 * @param role login role
+	 */
+	private static void infoBanner(RoleEnum role) {
+		switch (role) {
+			case NORMAL:
+				System.out.print("[bonjourcs@localhost ~]$ ");
+				break;
+			case ROOT:
+				System.out.print("[root@localhost /home/root]# ");
+				break;
+			default:
+				break;
+		}
+	}
+
+	/**
+	 * normal user login
 	 */
 	private static void login() {
 		try {
@@ -54,19 +102,34 @@ public class MockConsole {
 	/**
 	 * logout banner
 	 */
-	private static void logout() {
-		try {
-			System.out.println("logout");
-			Thread.sleep(500);
-			System.out.println("Connecting closing...Socket close.");
-			Thread.sleep(500);
-			System.out.println("Connection closed by foreign host..");
-			Thread.sleep(500);
-			System.out.println("Disconnected from remote host(bonjourcs@localhost) at " + new Date(System.currentTimeMillis()));
-			Thread.sleep(500);
-			System.exit(0);
-		} catch (Exception e) {
-			System.out.println("Error happened.");
+	private static void logout(RoleEnum role) {
+		switch (role) {
+			case NORMAL:
+				try {
+					System.out.println("logout");
+					Thread.sleep(500);
+					System.out.println("Connecting closing...Socket close.");
+					Thread.sleep(500);
+					System.out.println("Connection closed by foreign host..");
+					Thread.sleep(500);
+					System.out.println("Disconnected from remote host(bonjourcs@localhost) at " + new Date(System.currentTimeMillis()));
+					Thread.sleep(500);
+					System.exit(0);
+				} catch (Exception e) {
+					System.out.println("Error happened.");
+				}
+				break;
+			case ROOT:
+				count--;
+				if (count == 0) {
+					System.out.println("exit");
+					preNormal(RoleEnum.NORMAL);
+				} else {
+					preNormal(RoleEnum.ROOT);
+				}
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -75,15 +138,15 @@ public class MockConsole {
 	 *
 	 * @param str input string
 	 */
-	private static void handle(String str) {
+	private static void handle(RoleEnum role, String str) {
 		if (EXIT.equalsIgnoreCase(str)) {
-			logout();
+			logout(role);
 		} else if (CLEAR.equalsIgnoreCase(str)) {
-			clear();
+			clear(role);
 		} else if (SU.equalsIgnoreCase(str)) {
 			su();
 		} else {
-			normal(str);
+			normal(role, str);
 		}
 
 	}
@@ -93,82 +156,76 @@ public class MockConsole {
 	 *
 	 * @param str input string
 	 */
-	private static void normal(String str) {
-		System.out.println("-bash: " + str + ": command not found");
-		System.out.print("[bonjourcs@localhost ~]$ ");
+	private static void normal(RoleEnum role, String str) {
+		switch (role) {
+			case NORMAL:
+				System.out.println("-bash: " + str + ": command not found");
+				System.out.print("[bonjourcs@localhost ~]$ ");
+				break;
+			case ROOT:
+				System.out.println("-bash: " + str + ": command not found");
+				System.out.print("[root@localhost /home/root]# ");
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**
-	 * clean console
+	 * clear
+	 *
+	 * @param role user role
 	 */
-	private static void clear() {
+	private static void clear(RoleEnum role) {
 		for (int i = 0; i < ROW; i++) {
 			System.out.println();
 		}
-		System.out.print("[bonjourcs@localhost ~]$ ");
+		infoBanner(role);
 	}
 
 	/**
-	 * su
+	 * su operation
 	 */
 	private static void su() {
-		System.out.print("Password: ");
-		String str = in.next();
 
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			// do nothing
-		}
+		// if current user is root, don't need to input password
+		if (!isRoot) {
+			System.out.print("Password: ");
+			String str = SCANNER.next();
 
-		if (ROOT_PASSWORD.equals(str)) {
-			System.out.println("su: Authentication failure.");
-			preNormal();
+			// thread sleeps for 1s
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// do nothing
+			}
+
+			if (ROOT_PASSWORD.equals(str)) {
+				System.out.println("su: Authentication failure.");
+				preNormal(RoleEnum.NORMAL);
+			} else {
+				isRoot = true;
+				count++;
+				preNormal(RoleEnum.ROOT);
+			}
 		} else {
-			preSuNormal();
+			count++;
+			infoBanner(RoleEnum.ROOT);
 		}
 	}
 
 	/**
-	 * root user loop condition
+	 * enum for system roles
 	 */
-	private static void preSuNormal() {
-		String str;
-		System.out.print("[root@localhost /home/root]# ");
-		while ((str = in.next()) != null) {
-			suHandleString(str);
-		}
-	}
-
-	/**
-	 * root user handle input string
-	 *
-	 * @param str
-	 */
-	private static void suHandleString(String str) {
-		if (EXIT.equalsIgnoreCase(str)) {
-			suLogout();
-		} else {
-			suNormal(str);
-		}
-	}
-
-	/**
-	 * root user exit
-	 */
-	private static void suLogout() {
-		System.out.println("exit");
-		preNormal();
-	}
-
-	/**
-	 * handle another operation
-	 *
-	 * @param str input string
-	 */
-	private static void suNormal(String str) {
-		System.out.println("-bash: " + str + ": command not found");
-		System.out.print("[root@localhost /home/root]# ");
+	private enum RoleEnum {
+		/**
+		 * root user
+		 */
+		ROOT,
+		/**
+		 * normal user
+		 */
+		NORMAL
 	}
 
 }
