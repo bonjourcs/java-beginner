@@ -28,11 +28,20 @@ public class FileUtils {
      * @param targetFile   target file
      * @throws IOException exception
      */
-    public static void copyFile(String originalFile, String targetFile) throws IOException, URISyntaxException {
+    public static void copyFile(String originalFile, String targetFile) throws IOException{
 
         Path originalPath = Paths.get(CLASS_PATH, originalFile);
         Path targetPath = Paths.get(CLASS_PATH, targetFile);
 
         Files.copy(originalPath, targetPath, StandardCopyOption.REPLACE_EXISTING);
     }
+
+    public static void moveFile(String originalFile, String targetFile) throws IOException {
+
+        Path originalPath = Paths.get(CLASS_PATH, originalFile);
+        Path targetPath = Paths.get(CLASS_PATH, targetFile);
+
+        Files.move(originalPath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+    }
+
 }
