@@ -17,9 +17,19 @@ public class FileUtils {
     /**
      * classpath
      */
-    private static final String CLASS_PATH = ClassLoader
-            .getSystemResource("").getPath()
-            .replaceFirst("/", "");
+    private static String CLASS_PATH;
+
+    static {
+        String os = System.getProperty("os.name");
+        if (os.startsWith("Windows")) {
+            CLASS_PATH = ClassLoader
+                    .getSystemResource("").getPath()
+                    .replaceFirst("/", "");
+        } else {
+            CLASS_PATH = ClassLoader
+                    .getSystemResource("").getPath();
+        }
+    }
 
     /**
      * copy file
@@ -28,7 +38,7 @@ public class FileUtils {
      * @param targetFile   target file
      * @throws IOException exception
      */
-    public static void copyFile(String originalFile, String targetFile) throws IOException{
+    public static void copyFile(String originalFile, String targetFile) throws IOException {
 
         Path originalPath = Paths.get(CLASS_PATH, originalFile);
         Path targetPath = Paths.get(CLASS_PATH, targetFile);
