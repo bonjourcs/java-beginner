@@ -19,16 +19,9 @@ public class FileUtils {
      */
     private static String CLASS_PATH;
 
+    // get classpath
     static {
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            CLASS_PATH = ClassLoader
-                    .getSystemResource("").getPath()
-                    .replaceFirst("/", "");
-        } else {
-            CLASS_PATH = ClassLoader
-                    .getSystemResource("").getPath();
-        }
+        CLASS_PATH = NIOUtils.getClassPath();
     }
 
     /**
