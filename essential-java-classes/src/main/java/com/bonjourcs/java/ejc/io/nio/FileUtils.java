@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 
 /**
  * @author Liang Chenghao
@@ -39,12 +41,39 @@ public class FileUtils {
         Files.copy(originalPath, targetPath, StandardCopyOption.REPLACE_EXISTING);
     }
 
+    /**
+     * move file
+     *
+     * @param originalFile original file
+     * @param targetFile   target file
+     * @throws IOException exception
+     */
     public static void moveFile(String originalFile, String targetFile) throws IOException {
 
         Path originalPath = Paths.get(CLASS_PATH, originalFile);
         Path targetPath = Paths.get(CLASS_PATH, targetFile);
 
         Files.move(originalPath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    /**
+     * get basic file attributes
+     *
+     * @param fileName file to read attributes
+     * @throws IOException exception
+     */
+    public static void getBasicAttribute(String fileName) throws IOException {
+        Path path = Paths.get(CLASS_PATH, fileName);
+        if (Files.exists(path)) {
+            BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
+            System.out.printf("Create time : %s %n", attributes.creationTime());
+            System.out.printf("Last access time: %s %n", attributes.lastAccessTime());
+            FileTime fileTime = FileTime.fromMillis(System.currentTimeMillis());
+            Files.setLastModifiedTime(path, fileTime);
+            System.out.printf("Last access time: %s %n", attributes.lastAccessTime());
+        } else {
+            System.out.println("File " + path + " doesn't exist.");
+        }
     }
 
 }

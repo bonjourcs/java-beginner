@@ -26,5 +26,11 @@ public class FileUtilsTest {
         // rename back
         FileUtils.moveFile("file_original_move.txt", "file_original.txt");
     }
+    
+    @Test
+    public void testGetBaiscAttributes() throws IOException {
+        FileUtils.getBasicAttribute("file_attribute.txt");
+    }
+
 
 }
