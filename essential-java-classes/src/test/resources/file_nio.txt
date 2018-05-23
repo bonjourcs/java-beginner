@@ -1,0 +1,3 @@
+This file is for the purpose of testing copy file with Files class.
+Enjoy it.
+包括的中文使用UTF-8编码。
