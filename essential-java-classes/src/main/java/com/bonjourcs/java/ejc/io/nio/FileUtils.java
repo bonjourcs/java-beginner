@@ -75,4 +75,14 @@ public class FileUtils {
         }
     }
 
+    /**
+     * create temp file
+     *
+     * @return file created
+     * @throws IOException exception
+     */
+    public static Path createTempFile(String suffix) throws IOException {
+        return Files.createTempFile(null, suffix);
+    }
+
 }

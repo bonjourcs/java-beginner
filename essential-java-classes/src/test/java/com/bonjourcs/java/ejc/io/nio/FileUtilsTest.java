@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
 
 import static org.junit.Assert.*;
 
@@ -26,11 +27,16 @@ public class FileUtilsTest {
         // rename back
         FileUtils.moveFile("file_original_move.txt", "file_original.txt");
     }
-    
+
     @Test
-    public void testGetBaiscAttributes() throws IOException {
+    public void testGetBasicAttributes() throws IOException {
         FileUtils.getBasicAttribute("file_attribute.txt");
     }
 
+    @Test
+    public void testCreateTempFile() throws IOException {
+        Path file = FileUtils.createTempFile(".tmp");
+        System.out.printf("File %s created!", file);
+    }
 
 }
