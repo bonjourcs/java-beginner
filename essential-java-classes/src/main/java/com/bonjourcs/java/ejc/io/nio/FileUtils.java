@@ -96,6 +96,9 @@ public class FileUtils {
     public static Path createLink(String path, String linkName) throws IOException {
         Path filePath = Paths.get(NIOUtils.getClassPath(), path);
         Path linkPath = Paths.get(NIOUtils.getClassPath(), linkName);
+        if (Files.exists(linkPath)) {
+            Files.delete(linkPath);
+        }
         return Files.createLink(linkPath, filePath);
     }
 
