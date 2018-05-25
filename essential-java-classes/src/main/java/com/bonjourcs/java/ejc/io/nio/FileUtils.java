@@ -85,4 +85,18 @@ public class FileUtils {
         return Files.createTempFile(null, suffix);
     }
 
+    /**
+     * create link
+     *
+     * @param path     original file path
+     * @param linkName target link name
+     * @return created link
+     * @throws IOException exception
+     */
+    public static Path createLink(String path, String linkName) throws IOException {
+        Path filePath = Paths.get(NIOUtils.getClassPath(), path);
+        Path linkPath = Paths.get(NIOUtils.getClassPath(), linkName);
+        return Files.createLink(linkPath, filePath);
+    }
+
 }

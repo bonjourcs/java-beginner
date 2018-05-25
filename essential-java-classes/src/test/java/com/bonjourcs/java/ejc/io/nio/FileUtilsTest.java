@@ -3,10 +3,7 @@ package com.bonjourcs.java.ejc.io.nio;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Path;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Liang Chenghao
@@ -37,6 +34,11 @@ public class FileUtilsTest {
     public void testCreateTempFile() throws IOException {
         Path file = FileUtils.createTempFile(".tmp");
         System.out.printf("File %s created!", file);
+    }
+
+    @Test
+    public void testCreateLink() throws IOException {
+        FileUtils.createLink("file_nio.txt", "file_nio.link");
     }
 
 }
