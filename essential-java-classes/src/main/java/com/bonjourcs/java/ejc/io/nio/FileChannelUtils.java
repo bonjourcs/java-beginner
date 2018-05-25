@@ -23,7 +23,7 @@ public class FileChannelUtils {
      */
     public void writeFile(String fileName) throws IOException {
 
-        ByteBuffer out = ByteBuffer.wrap("Hello".getBytes());
+        ByteBuffer out = ByteBuffer.wrap("Hello \n".getBytes());
         ByteBuffer copy = ByteBuffer.allocate(12);
 
         // if file doesn't exist, create a new file

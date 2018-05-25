@@ -10,19 +10,19 @@ import java.io.IOException;
  * Description:
  * Date: 2018/5/23
  */
-public class ChanelUtilsTest {
+public class ChannelUtilsTest {
 
-    private ChanelUtils chanelUtils;
+    private ChannelUtils channelUtils;
 
     @Before
     public void init() {
-        this.chanelUtils = new ChanelUtils();
+        this.channelUtils = new ChannelUtils();
     }
 
     @Test
     public void testCopyFile() throws IOException {
-        chanelUtils.copyFile("file_nio.txt", "file_nio_copy.txt");
-        chanelUtils.readFile("file_nio_copy.txt");
+        channelUtils.copyFile("file_nio.txt", "file_nio_copy.txt");
+        channelUtils.readFile("file_nio_copy.txt");
     }
 
 }

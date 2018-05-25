@@ -14,7 +14,7 @@ import java.nio.file.*;
  * Description:  use nio chanel
  * Date: 2018/5/22
  */
-public class ChanelUtils {
+public class ChannelUtils {
 
     /**
      * copy file
