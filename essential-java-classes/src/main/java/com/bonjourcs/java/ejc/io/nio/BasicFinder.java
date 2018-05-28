@@ -36,7 +36,7 @@ public class BasicFinder extends SimpleFileVisitor<Path> {
     }
 
     @Override
-    public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         System.out.printf("Directory %s %n", dir);
         return FileVisitResult.CONTINUE;
     }
