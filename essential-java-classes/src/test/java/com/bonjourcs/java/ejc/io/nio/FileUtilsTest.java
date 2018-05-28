@@ -50,4 +50,9 @@ public class FileUtilsTest {
         Assert.assertTrue(Files.isSymbolicLink(link));
     }
 
+    @Test
+    public void testWalkFileTree() throws IOException {
+        FileUtils.walkFileTree("home");
+    }
+
 }

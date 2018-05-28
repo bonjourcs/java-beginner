@@ -119,4 +119,24 @@ public class FileUtils {
         return Files.createSymbolicLink(linkPath, filePath);
     }
 
+    /**
+     * walk file tree
+     *
+     * @param path root file path
+     * @throws IOException exception
+     */
+    public static void walkFileTree(String path) throws IOException {
+        Files.walkFileTree(Paths.get(NIOUtils.getClassPath(), path), new BasicFinder());
+    }
+
+    /**
+     * walk file tree based on classpath
+     *
+     * @throws IOException
+     */
+    public static void walkFileTree() throws IOException {
+        walkFileTree("");
+    }
+
+
 }
