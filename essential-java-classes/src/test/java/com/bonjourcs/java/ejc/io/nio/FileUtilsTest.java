@@ -55,4 +55,8 @@ public class FileUtilsTest {
         FileUtils.walkFileTree("home");
     }
 
+    @Test
+    public void testFindPattern() throws IOException {
+        FileUtils.findPattern("home", "\\.bash*");
+    }
 }

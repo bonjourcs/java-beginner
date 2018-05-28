@@ -138,5 +138,25 @@ public class FileUtils {
         walkFileTree("");
     }
 
+    /**
+     * find pattern
+     *
+     * @param path    path to walk
+     * @param pattern pattern
+     * @throws IOException exception
+     */
+    public static void findPattern(String path, String pattern) throws IOException {
+        Files.walkFileTree(Paths.get(NIOUtils.getClassPath(), path), new Finder(pattern));
+    }
+
+    /**
+     * find pattern in classpath
+     *
+     * @param pattern pattern
+     * @throws IOException exception
+     */
+    public static void findPattern(String pattern) throws IOException {
+        findPattern("", pattern);
+    }
 
 }
