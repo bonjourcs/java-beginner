@@ -88,18 +88,35 @@ public class FileUtils {
     /**
      * create link
      *
-     * @param path     original file path
+     * @param fileName original file name
      * @param linkName target link name
      * @return created link
      * @throws IOException exception
      */
-    public static Path createLink(String path, String linkName) throws IOException {
-        Path filePath = Paths.get(NIOUtils.getClassPath(), path);
+    public static Path createHardLink(String fileName, String linkName) throws IOException {
+        Path filePath = Paths.get(NIOUtils.getClassPath(), fileName);
         Path linkPath = Paths.get(NIOUtils.getClassPath(), linkName);
         if (Files.exists(linkPath)) {
             Files.delete(linkPath);
         }
         return Files.createLink(linkPath, filePath);
+    }
+
+    /**
+     * create symbol link
+     *
+     * @param fileName original file name
+     * @param linkName target link name
+     * @return link created
+     * @throws IOException exception
+     */
+    public static Path createSymbolicLink(String fileName, String linkName) throws IOException {
+        Path filePath = Paths.get(NIOUtils.getClassPath(), fileName);
+        Path linkPath = Paths.get(NIOUtils.getClassPath(), linkName);
+        if (Files.exists(linkPath)) {
+            Files.delete(linkPath);
+        }
+        return Files.createSymbolicLink(linkPath, filePath);
     }
 
 }

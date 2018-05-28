@@ -1,8 +1,10 @@
 package com.bonjourcs.java.ejc.io.nio;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -38,7 +40,14 @@ public class FileUtilsTest {
 
     @Test
     public void testCreateLink() throws IOException {
-        FileUtils.createLink("file_nio.txt", "file_nio.link");
+        Path link = FileUtils.createHardLink("file_nio.txt", "file_nio.link");
+        Assert.assertFalse(Files.isSymbolicLink(link));
+    }
+
+    @Test
+    public void testCreateSymbolLink() throws IOException {
+        Path link = FileUtils.createSymbolicLink("file_nio.txt", "file_nio.soft");
+        Assert.assertTrue(Files.isSymbolicLink(link));
     }
 
 }
