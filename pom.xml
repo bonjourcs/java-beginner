@@ -21,6 +21,7 @@
         <module>java-beginner-common</module>
         <module>java-playground</module>
         <module>java-collections</module>
+        <module>java-gui-fx</module>
     </modules>
 
     <dependencies>

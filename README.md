@@ -15,6 +15,7 @@ Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutor
 - Essential Java Classes
 - Java Playground
 - Java Collections
+- Java GUI FX
 
 # License
 
