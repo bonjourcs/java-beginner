@@ -23,4 +23,15 @@ public class SetInterface {
         return new HashSet<>(c);
     }
 
+    /**
+     * safe remove element from collection
+     *
+     * @param c   source collection
+     * @param e   element to remove
+     * @param <E> collection type
+     */
+    public static <E> boolean safeDelete(Collection<E> c, E e) {
+        return c.removeIf(x -> x.equals(e));
+    }
+
 }
