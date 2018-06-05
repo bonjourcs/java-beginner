@@ -19,4 +19,12 @@ public class ListInterface {
         return count;
     }
 
+    public static <E> void replace(List<E> list, E oldVal, E newVal) {
+        for (ListIterator<E> iterator = list.listIterator(); iterator.hasNext(); ) {
+            if (oldVal == null ? iterator.next() == null : oldVal.equals(iterator.next())) {
+                iterator.set(newVal);
+            }
+        }
+    }
+
 }

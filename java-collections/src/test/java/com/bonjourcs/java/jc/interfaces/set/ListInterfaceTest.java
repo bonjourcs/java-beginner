@@ -22,5 +22,16 @@ public class ListInterfaceTest {
         Assert.assertEquals(3, list.size());
     }
 
+    @Test
+    public void testBasicListOperation() {
+        List<String> list = Arrays.asList("Hello", "World", "Bonjourcs", "Ciao");
+        // find element in list
+        Assert.assertEquals(0, list.indexOf("Hello"));
+        Assert.assertEquals(-1, list.indexOf(null));
+        Assert.assertEquals(-1, list.indexOf("你好"));
+        // replace element in list
+        ListInterface.replace(list, "Hello", "你好");
+        Assert.assertEquals(0, list.indexOf("你好"));
+    }
 
 }
