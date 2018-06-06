@@ -1,4 +1,4 @@
-package com.bonjourcs.java.jc.interfaces.set;
+package com.bonjourcs.java.jc.collection.interfaces;
 
 import java.util.Collection;
 import java.util.HashSet;

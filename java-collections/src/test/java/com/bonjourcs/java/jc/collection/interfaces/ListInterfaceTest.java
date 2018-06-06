@@ -1,13 +1,10 @@
-package com.bonjourcs.java.jc.interfaces.set;
+package com.bonjourcs.java.jc.collection.interfaces;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Liang Chenghao

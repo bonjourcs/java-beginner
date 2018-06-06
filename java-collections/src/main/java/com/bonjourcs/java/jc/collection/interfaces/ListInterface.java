@@ -1,4 +1,4 @@
-package com.bonjourcs.java.jc.interfaces.set;
+package com.bonjourcs.java.jc.collection.interfaces;
 
 import java.util.List;
 import java.util.ListIterator;
