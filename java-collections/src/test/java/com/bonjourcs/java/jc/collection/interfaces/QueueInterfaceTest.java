@@ -3,6 +3,7 @@ package com.bonjourcs.java.jc.collection.interfaces;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -54,6 +55,35 @@ public class QueueInterfaceTest {
     public void testPeek() {
         Queue<Integer> queue = new PriorityQueue<>(3);
         QueueInterface.peek(queue);
+    }
+
+    @Test
+    public void testFetchElement() {
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int i = 0; i < 10; i++) {
+            queue.offer(i);
+        }
+
+        // fetch element from queue
+        Integer count = 0;
+        while (!queue.isEmpty()) {
+            Assert.assertEquals(count, queue.remove());
+            count++;
+        }
+
+    }
+
+    @Test
+    public void testPriorityQueue() {
+
+        Queue<String> queue = new PriorityQueue<>();
+        queue.add("Hello");
+        queue.add("World");
+        queue.add("AString");
+
+        Assert.assertEquals("AString", queue.poll());
     }
 
 }
