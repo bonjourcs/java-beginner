@@ -3,10 +3,11 @@ package com.bonjourcs.java.jc.collection.interfaces;
 import com.bonjourcs.java.jc.aggregate.Department;
 import com.bonjourcs.java.jc.aggregate.Employee;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -61,6 +62,41 @@ public class MapInterface {
         }
 
         return valid;
+    }
+
+    /**
+     * @param filePath
+     * @param minCount
+     * @return group count
+     * @throws IOException
+     */
+    public static int groupWords(String filePath, int minCount) throws IOException {
+
+        Map<String, List<String>> map = new HashMap<>();
+        Scanner scanner = new Scanner(new File(filePath));
+
+        while (scanner.hasNext()) {
+            String word = scanner.next();
+            String alpha = alphabetize(word);
+            List<String> list = map.computeIfAbsent(alpha, k -> new ArrayList<>());
+            list.add(word);
+        }
+
+        int count = 0;
+        for (List<String> list : map.values()) {
+            if (list.size() >= minCount) {
+                count++;
+            }
+        }
+
+        return count;
+
+    }
+
+    private static String alphabetize(String s) {
+        byte[] bytes = s.getBytes();
+        Arrays.sort(bytes);
+        return new String(bytes);
     }
 
 }

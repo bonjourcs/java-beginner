@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -67,5 +68,11 @@ public class MapInterfaceTest {
         Assert.assertFalse(MapInterface.validate(attributes, requiredAttrs, permittedAttrs));
     }
 
+    @Test
+    public void testGroupWords() throws IOException {
+        String path =
+                ClassLoader.getSystemResource("").getPath() + "dictionary.txt";
+        Assert.assertEquals(306, MapInterface.groupWords(path, 5));
+    }
 
 }
