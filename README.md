@@ -16,6 +16,7 @@ Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutor
 - Java Playground
 - Java Collections
 - Java GUI FX
+- Special Trails
 
 # License
 
