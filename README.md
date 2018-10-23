@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/bonjourcs/java-beginner.svg?branch=master)](https://travis-ci.org/bonjourcs/java-beginner)
 [![codecov](https://codecov.io/gh/bonjourcs/java-beginner/branch/master/graph/badge.svg)](https://codecov.io/gh/bonjourcs/java-beginner)
 
-Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutorial/).
+Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutorial/) and other resources.[^ref]
 
 
 # Modules
@@ -35,3 +35,9 @@ WTFPL 2.0
  0. You just DO WHAT THE FUCK YOU WANT TO.
  
 ```
+
+# Other references
+
+[^ref] References of this project:
+
+- [大话设计模式-豆瓣](https://book.douban.com/subject/2334288/)
