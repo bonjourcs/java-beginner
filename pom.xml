@@ -24,6 +24,7 @@
         <module>java-collections</module>
         <module>java-gui-fx</module>
         <module>special-trails</module>
+        <module>reflection-beginner</module>
     </modules>
 
     <dependencies>
