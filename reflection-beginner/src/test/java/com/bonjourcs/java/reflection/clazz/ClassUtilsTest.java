@@ -46,6 +46,10 @@ public class ClassUtilsTest {
         name = "[D";
         clazz = ClassUtils.getClassFromName(name);
 
+        // fixed class from wrapped class
+        clazz = Double.TYPE;
+        clazz = Void.TYPE;
+
     }
 
     private enum BasicEnum {
