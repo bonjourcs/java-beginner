@@ -17,4 +17,15 @@ public class ClassUtils {
         return o.getClass();
     }
 
+    /**
+     * get class by name
+     *
+     * @param className class name
+     * @return class
+     * @throws ClassNotFoundException when class not found, this happens
+     */
+    public static Class getClassFromName(String className) throws ClassNotFoundException {
+        return Class.forName(className);
+    }
+
 }

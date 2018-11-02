@@ -35,6 +35,19 @@ public class ClassUtilsTest {
 
     }
 
+    @Test
+    public void testGetClassByName() throws ClassNotFoundException {
+
+        // primitive type class
+        String name = "java.lang.String";
+        Class clazz = ClassUtils.getClassFromName(name);
+
+        // double array class
+        name = "[D";
+        clazz = ClassUtils.getClassFromName(name);
+
+    }
+
     private enum BasicEnum {
         ONE, TWO
     }
