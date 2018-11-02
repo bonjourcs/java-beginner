@@ -3,7 +3,8 @@ package com.bonjourcs.java.reflection.clazz;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Liang Chenghao
@@ -19,7 +20,18 @@ public class ClassUtilsTest {
         Assert.assertEquals("java.lang.String", c.getName());
 
         Class enumClass = ClassUtils.getClass(BasicEnum.ONE);
-        System.out.println(enumClass.getName());
+        Assert.assertEquals("com.bonjourcs.java.reflection.clazz.ClassUtilsTest$BasicEnum",
+                enumClass.getName());
+
+        // this returns  Class which corresponds to an array with component type byte
+        String[] strings = new String[24];
+        Class arrayClass = ClassUtils.getClass(strings);
+
+        Set<String> set = new HashSet<>(3);
+        Assert.assertEquals("java.util.HashSet", ClassUtils.getClass(set).getName());
+
+        // get Class from a primitive type object
+        Assert.assertEquals("java.lang.Boolean", ClassUtils.getClass(false).getName());
 
     }
 
