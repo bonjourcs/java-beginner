@@ -36,7 +36,7 @@ public class ClassUtilsTest {
     }
 
     @Test
-    public void testGetClassByName() throws ClassNotFoundException {
+    public void testGetClassByName() throws ClassNotFoundException, NoSuchFieldException {
 
         // primitive type class
         String name = "java.lang.String";
@@ -49,6 +49,26 @@ public class ClassUtilsTest {
         // fixed class from wrapped class
         clazz = Double.TYPE;
         clazz = Void.TYPE;
+
+        // get all public member classes of Character
+        Class<?>[] classes = Character.class.getClasses();
+        Assert.assertEquals(3, classes.length);
+
+        // get all member classes of Character
+        classes = Character.class.getDeclaredClasses();
+        Assert.assertEquals(4, classes.length);
+
+        // out is declared in class System
+        Class<?> someClass = System.class.getField("out").getDeclaringClass();
+
+        Object o = new Object() {
+            void init() {
+
+            }
+        };
+
+        // the declaring class of the anonymous class defined by o is null
+        Assert.assertNull(o.getClass().getDeclaringClass());
 
     }
 
