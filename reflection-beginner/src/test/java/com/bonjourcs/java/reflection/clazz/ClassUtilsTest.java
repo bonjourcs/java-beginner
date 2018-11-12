@@ -70,6 +70,9 @@ public class ClassUtilsTest {
         // the declaring class of the anonymous class defined by o is null
         Assert.assertNull(o.getClass().getDeclaringClass());
 
+        // this is not null
+        Assert.assertNotNull(o.getClass().getEnclosingClass());
+
     }
 
     private enum BasicEnum {
