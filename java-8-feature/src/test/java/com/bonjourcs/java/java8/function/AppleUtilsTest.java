@@ -39,10 +39,12 @@ public class AppleUtilsTest {
         // filter green apple
         Assert.assertEquals(1,
                 AppleUtils.filterApples(apples, AppleUtils::isGreenApple).size());
+        AppleUtils.filterApples(apples, apple -> "Green".equalsIgnoreCase(apple.getColor()));
 
         // filter big apple
         Assert.assertEquals(3,
                 AppleUtils.filterApples(apples, AppleUtils::isBigApple).size());
+        AppleUtils.filterApples(apples, apple -> apple.getWeight() > 150);
 
     }
 
