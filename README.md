@@ -41,3 +41,4 @@ WTFPL 2.0
 [^ref] References of this project:
 
 - [大话设计模式-豆瓣](https://book.douban.com/subject/2334288/)
+- [Modern Java In Action](https://www.manning.com/books/modern-java-in-action)

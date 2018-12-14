@@ -25,6 +25,7 @@
         <module>java-gui-fx</module>
         <module>special-trails</module>
         <module>reflection-beginner</module>
+        <module>java-8-feature</module>
     </modules>
 
     <dependencies>
