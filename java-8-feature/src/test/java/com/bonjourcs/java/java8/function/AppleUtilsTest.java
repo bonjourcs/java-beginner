@@ -25,11 +25,13 @@ public class AppleUtilsTest {
         Apple apple2 = new Apple("Yellow", 160);
         Apple apple3 = new Apple("Blue", 170);
         Apple apple4 = new Apple("Pink", 180);
+        Apple apple5 = new Apple("Green", 180);
 
         apples.add(apple1);
         apples.add(apple2);
         apples.add(apple3);
         apples.add(apple4);
+        apples.add(apple5);
 
     }
 
@@ -37,14 +39,24 @@ public class AppleUtilsTest {
     public void testFilterApples() {
 
         // filter green apple
-        Assert.assertEquals(1,
+        Assert.assertEquals(2,
                 AppleUtils.filterApples(apples, AppleUtils::isGreenApple).size());
         AppleUtils.filterApples(apples, apple -> "Green".equalsIgnoreCase(apple.getColor()));
 
         // filter big apple
-        Assert.assertEquals(3,
+        Assert.assertEquals(4,
                 AppleUtils.filterApples(apples, AppleUtils::isBigApple).size());
         AppleUtils.filterApples(apples, apple -> apple.getWeight() > 150);
+
+    }
+
+    @Test
+    public void testFilterAppleByFruitUtils() {
+
+        Assert.assertEquals(1,
+                FruitUtils.filterFruit(apples, apple ->
+                        "Green".equalsIgnoreCase(apple.getColor()) && apple.getWeight() > 150
+                ).size());
 
     }
 
