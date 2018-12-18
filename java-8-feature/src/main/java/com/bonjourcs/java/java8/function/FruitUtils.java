@@ -2,6 +2,7 @@ package com.bonjourcs.java.java8.function;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -32,4 +33,16 @@ public class FruitUtils {
         return newFruits;
 
     }
+
+    /**
+     * consume fruits
+     *
+     * @param fruits   fruits to operate
+     * @param consumer consume method
+     * @param <T>      fruit type
+     */
+    public static <T> void comsumeFruit(List<T> fruits, Consumer<T> consumer) {
+        fruits.forEach(consumer);
+    }
+
 }
