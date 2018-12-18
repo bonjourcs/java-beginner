@@ -60,6 +60,11 @@ public class AppleUtilsTest {
 
     }
 
+    @Test
+    public void testLambda() {
+        doSomething(1, 2, (a, b) -> System.out.println("a=" + a + "b=" + b));
+    }
+
     /**
      * this is where you call Helper class
      *
@@ -68,6 +73,10 @@ public class AppleUtilsTest {
      * @param helper Helper class instance
      */
     private void doSomething(int a, int b, Helper helper) {
+
+        Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName()));
+        thread.run();
+
         helper.help(a, b);
     }
 
