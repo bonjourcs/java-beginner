@@ -68,7 +68,7 @@ public class AppleUtilsTest {
                 = FruitUtils.filterFruit(apples, apple -> "Green".equalsIgnoreCase(apple.getColor()));
 
         // consume apples
-        FruitUtils.comsumeFruit(
+        FruitUtils.consumeFruit(
                 newApples
                 , System.out::println);
 

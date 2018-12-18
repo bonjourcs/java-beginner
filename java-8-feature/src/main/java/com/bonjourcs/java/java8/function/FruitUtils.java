@@ -41,7 +41,7 @@ public class FruitUtils {
      * @param consumer consume method
      * @param <T>      fruit type
      */
-    public static <T> void comsumeFruit(List<T> fruits, Consumer<T> consumer) {
+    public static <T> void consumeFruit(List<T> fruits, Consumer<T> consumer) {
         fruits.forEach(consumer);
     }
 
