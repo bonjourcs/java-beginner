@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,20 @@ public class AppleUtilsTest {
                 FruitUtils.filterFruit(apples, apple ->
                         "Green".equalsIgnoreCase(apple.getColor()) && apple.getWeight() > 150
                 ).size());
+
+    }
+
+    @Test
+    public void testConsumeFruit() {
+
+        // filter apples
+        List<Apple> newApples
+                = FruitUtils.filterFruit(apples, apple -> "Green".equalsIgnoreCase(apple.getColor()));
+
+        // consume apples
+        FruitUtils.comsumeFruit(
+                newApples
+                , System.out::println);
 
     }
 
