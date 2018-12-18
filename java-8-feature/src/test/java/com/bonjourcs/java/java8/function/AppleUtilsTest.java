@@ -61,6 +61,24 @@ public class AppleUtilsTest {
     }
 
     @Test
+    public void testFilterAndReturn() {
+
+        List<Apple> newApples = FruitUtils.filterAndReturn(apples,
+                this::filterApple);
+
+        Assert.assertEquals(4, newApples.size());
+    }
+
+    private Apple filterApple(Apple apple) {
+
+        if (apple.getWeight() > 150) {
+            return apple;
+        }
+
+        return null;
+    }
+
+    @Test
     public void testConsumeFruit() {
 
         // filter apples

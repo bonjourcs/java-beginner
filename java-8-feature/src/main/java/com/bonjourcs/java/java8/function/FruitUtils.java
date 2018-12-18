@@ -3,6 +3,7 @@ package com.bonjourcs.java.java8.function;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -45,4 +46,27 @@ public class FruitUtils {
         fruits.forEach(consumer);
     }
 
+    /**
+     * filter and return
+     *
+     * @param fruits   fruits to filter
+     * @param function function to filter
+     * @param <T>      fruits type
+     * @param <R>      return type
+     * @return a list
+     */
+    public static <T, R> List<R> filterAndReturn(List<T> fruits, Function<T, R> function) {
+
+        List<R> result = new ArrayList<>();
+
+        fruits.forEach(f -> {
+            R filter = function.apply(f);
+            if (filter != null) {
+                result.add(filter);
+            }
+        });
+
+        return result;
+
+    }
 }
