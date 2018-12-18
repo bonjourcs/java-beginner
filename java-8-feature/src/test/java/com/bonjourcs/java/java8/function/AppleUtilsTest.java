@@ -60,4 +60,19 @@ public class AppleUtilsTest {
 
     }
 
+    /**
+     * this is where you call Helper class
+     *
+     * @param a      integer a
+     * @param b      integer b
+     * @param helper Helper class instance
+     */
+    private void doSomething(int a, int b, Helper helper) {
+        helper.help(a, b);
+    }
+
+    interface Helper {
+        void help(int a, int b);
+    }
+
 }
