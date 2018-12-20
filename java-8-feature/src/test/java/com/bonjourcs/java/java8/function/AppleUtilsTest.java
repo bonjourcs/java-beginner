@@ -5,7 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
  * @author Liang Chenghao
@@ -114,6 +117,23 @@ public class AppleUtilsTest {
 
     interface Helper {
         void help(int a, int b);
+    }
+
+
+    @Test
+    public void testGetApple() {
+        System.out.println(getApple("Yellow", 10));
+    }
+
+    static Map<String, Function<Integer, Apple>> map = new HashMap<>();
+
+    static {
+        map.put("Green", Apple::new);
+        map.put("Yellow", Apple::new);
+    }
+
+    private static Apple getApple(String color, int weight) {
+        return map.get(color).apply(weight);
     }
 
 }
