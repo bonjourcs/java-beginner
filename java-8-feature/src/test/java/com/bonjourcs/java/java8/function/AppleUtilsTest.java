@@ -7,10 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -143,7 +140,7 @@ public class AppleUtilsTest {
     public void testFunctionalInterface() {
 
         TirFunction<String, String, String, RGB> color = RGB::new;
-        Assert.assertNotNull(color.apply("100","100","100"));
+        Assert.assertNotNull(color.apply("100", "100", "100"));
 
     }
 
@@ -168,4 +165,11 @@ public class AppleUtilsTest {
         R apply(A a, B b, C c);
     }
 
+    @Test
+    public void testSortApple() {
+
+        apples.sort(Comparator.comparing(Apple::getWeight).reversed()
+        .thenComparing(Apple::getColor));
+
+    }
 }
