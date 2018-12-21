@@ -1,5 +1,8 @@
 package com.bonjourcs.java.java8.function;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -122,7 +125,7 @@ public class AppleUtilsTest {
 
     @Test
     public void testGetApple() {
-        System.out.println(getApple("Yellow", 10));
+        Assert.assertEquals(10, getApple("Yellow", 10).getWeight());
     }
 
     static Map<String, Function<Integer, Apple>> map = new HashMap<>();
@@ -134,6 +137,35 @@ public class AppleUtilsTest {
 
     private static Apple getApple(String color, int weight) {
         return map.get(color).apply(weight);
+    }
+
+    @Test
+    public void testFunctionalInterface() {
+
+        TirFunction<String, String, String, RGB> color = RGB::new;
+        Assert.assertNotNull(color.apply("100","100","100"));
+
+    }
+
+    /**
+     * color rgb
+     */
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    private class RGB {
+
+        private String red;
+
+        private String green;
+
+        private String blue;
+
+    }
+
+    @FunctionalInterface
+    private interface TirFunction<A, B, C, R> {
+        R apply(A a, B b, C c);
     }
 
 }
