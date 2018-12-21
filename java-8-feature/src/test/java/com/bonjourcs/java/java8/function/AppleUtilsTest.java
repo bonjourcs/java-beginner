@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * @author Liang Chenghao
@@ -169,7 +170,25 @@ public class AppleUtilsTest {
     public void testSortApple() {
 
         apples.sort(Comparator.comparing(Apple::getWeight).reversed()
-        .thenComparing(Apple::getColor));
+                .thenComparing(Apple::getColor));
+
+    }
+
+    @Test
+    public void testFilterApple() {
+
+        Predicate<Apple> greenApplePredicate = apple -> "Green".equalsIgnoreCase(apple.getColor());
+
+        // (not green and weight > 150) || (weight < 200)
+        Predicate<Apple> newPredicate =
+                greenApplePredicate.negate()
+                        .and(apple -> apple.getWeight() > 150).or(apple -> apple.getWeight() < 200);
+        Assert.assertEquals(5, FruitUtils.filterFruit(apples, newPredicate).size());
+
+        // (not green or weight > 150) && (weight < 180)
+        newPredicate = greenApplePredicate.negate()
+                .or(apple -> apple.getWeight() > 150).and(apple -> apple.getWeight() < 180);
+        Assert.assertEquals(2, FruitUtils.filterFruit(apples, newPredicate).size());
 
     }
 }
