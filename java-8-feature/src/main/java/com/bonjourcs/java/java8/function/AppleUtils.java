@@ -1,6 +1,5 @@
 package com.bonjourcs.java.java8.function;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,17 +18,7 @@ public class AppleUtils {
      * @return filtered apples
      */
     public static List<Apple> filterApples(List<Apple> apple, Predicate<Apple> predicate) {
-
-        List<Apple> result = new ArrayList<>();
-
-        apple.forEach(e -> {
-            if (predicate.test(e)) {
-                result.add(e);
-            }
-        });
-
-        return result;
-
+        return FruitUtils.filterFruit(apple, predicate);
     }
 
     /**
