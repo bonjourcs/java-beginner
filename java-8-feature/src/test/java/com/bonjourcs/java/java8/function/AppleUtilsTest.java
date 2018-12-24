@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.DoubleFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -191,4 +192,14 @@ public class AppleUtilsTest {
         Assert.assertEquals(2, FruitUtils.filterFruit(apples, newPredicate).size());
 
     }
+
+    @Test
+    public void testComposingFunction() {
+        Assert.assertEquals(4.5, integrate(arg -> arg + 2, 2, 3),0);
+    }
+
+    private double integrate(DoubleFunction<Double> f, double a, double b) {
+        return (f.apply(a) + f.apply(b)) * (b - a) / 2;
+    }
+
 }
