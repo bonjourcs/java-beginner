@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -53,6 +54,18 @@ public class StreamUpTest {
 //                .takeWhile(i -> i <= 5).collect(Collectors.toList()).size());
 //        Assert.assertEquals(5, integers.stream()
 //                .dropWhile(i -> i <= 5).collect(Collectors.toList()).size());
+
+    }
+
+    @Test
+    public void testFlatMap(){
+
+        Assert.assertEquals(13,strings.stream()
+                .map(s->s.split(""))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .collect(Collectors.toList())
+                .size());
 
     }
 
