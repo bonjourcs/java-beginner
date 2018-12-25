@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -18,9 +17,12 @@ public class StreamUpTest {
 
     private List<String> strings;
 
+    private List<Integer> integers;
+
     @Before
     public void init() {
         strings = Arrays.asList("Hello", "World", "I", "Am", "A", "Programmer");
+        integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -40,6 +42,17 @@ public class StreamUpTest {
         strings = Arrays.asList("Hello", "Hello", "World", "Am");
         Assert.assertEquals(2,
                 StreamUp.filterUnique(strings, s -> s != null && s.length() > 3).size());
+
+    }
+
+    @Test
+    public void testSliceStream() {
+
+        // this is supported on java 9 and above
+//        Assert.assertEquals(5, integers.stream()
+//                .takeWhile(i -> i <= 5).collect(Collectors.toList()).size());
+//        Assert.assertEquals(5, integers.stream()
+//                .dropWhile(i -> i <= 5).collect(Collectors.toList()).size());
 
     }
 
