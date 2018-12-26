@@ -58,14 +58,27 @@ public class StreamUpTest {
     }
 
     @Test
-    public void testFlatMap(){
+    public void testFlatMap() {
 
-        Assert.assertEquals(13,strings.stream()
-                .map(s->s.split(""))
+        Assert.assertEquals(13, strings.stream()
+                .map(s -> s.split(""))
                 .flatMap(Arrays::stream)
                 .distinct()
                 .collect(Collectors.toList())
                 .size());
+
+    }
+
+    @Test
+    public void testMap() {
+
+        List<Integer> integers1 = Arrays.asList(1, 2, 3);
+        List<Integer> integers2 = Arrays.asList(4, 5);
+
+        Assert.assertEquals(6, integers1.stream()
+                .flatMap(i -> integers2.stream()
+                        .map(j -> new int[]{i, j}))
+                .collect(Collectors.toList()).size());
 
     }
 
