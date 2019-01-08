@@ -4,7 +4,6 @@
 [![codecov](https://codecov.io/gh/bonjourcs/java-beginner/branch/master/graph/badge.svg)](https://codecov.io/gh/bonjourcs/java-beginner)
 [![license](https://img.shields.io/badge/WTFPL-2.0-blue.svg)](https://wtfpl2.com)
 
-``````````
 Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutorial/) and other resources.[^ref]
 
 
