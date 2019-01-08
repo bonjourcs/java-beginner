@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.print.attribute.standard.Fidelity;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
