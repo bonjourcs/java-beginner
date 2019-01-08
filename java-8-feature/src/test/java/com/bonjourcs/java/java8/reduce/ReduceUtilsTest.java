@@ -5,6 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -68,6 +72,26 @@ public class ReduceUtilsTest {
                 .flatMap(a -> IntStream.rangeClosed(a, 100)
                         .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
                         .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)}));
+    }
+
+    @Test
+    public void testCountWord() {
+
+        long word = 0;
+        try (Stream<String> lines = Files.lines(Paths.get(getPath() + "j8f/words.txt"),
+                Charset.defaultCharset())) {
+            word = lines.flatMap(line -> Arrays.stream(line.split(" "))).distinct()
+                    .count();
+        } catch (IOException e) {
+        }
+
+        Assert.assertEquals(13,word);
+
+    }
+
+    private String getPath() {
+        return this.getClass().getResource("/").getPath()
+                .replaceFirst("/", "");
     }
 
 }
