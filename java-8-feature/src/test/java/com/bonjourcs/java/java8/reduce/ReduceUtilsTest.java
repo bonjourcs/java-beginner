@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -107,5 +108,29 @@ public class ReduceUtilsTest {
 
     }
 
+    @Test
+    public void testNewGetFibonacci() {
 
+
+        IntSupplier intSupplier = new IntSupplier() {
+
+            private int previous = 0;
+            private int current = 1;
+
+            @Override
+            public int getAsInt() {
+                int old = previous;
+                int next = previous + current;
+                previous = current;
+                current = next;
+                return old;
+            }
+        };
+
+        int[] array = IntStream.generate(intSupplier).limit(20)
+                .toArray();
+
+        Assert.assertEquals(4181, array[19]);
+
+    }
 }
