@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -85,7 +86,7 @@ public class ReduceUtilsTest {
         } catch (IOException e) {
         }
 
-        Assert.assertEquals(13,word);
+        Assert.assertEquals(13, word);
 
     }
 
@@ -93,5 +94,18 @@ public class ReduceUtilsTest {
         return this.getClass().getResource("/").getPath()
                 .replaceFirst("/", "");
     }
+
+    @Test
+    public void testGetFibonacci() {
+
+        List<Integer> list = Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(20)
+                .map(t -> t[0])
+                .collect(Collectors.toList());
+
+        assertEquals(4181, (int) list.get(19));
+
+    }
+
 
 }
