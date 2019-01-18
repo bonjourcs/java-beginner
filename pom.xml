@@ -26,6 +26,7 @@
         <module>special-trails</module>
         <module>reflection-beginner</module>
         <module>java-8-feature</module>
+        <module>netty-in-action</module>
     </modules>
 
     <dependencies>

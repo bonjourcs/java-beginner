@@ -16,6 +16,7 @@ Exercise code based on [The Java Tutorials](https://docs.oracle.com/javase/tutor
 - Java Playground
 - Java Collections
 - Java GUI FX
+- Netty in Action
 - Special Trails
 
 # License
@@ -44,3 +45,4 @@ WTFPL 2.0
 
 - [大话设计模式-豆瓣](https://book.douban.com/subject/2334288/)
 - [Modern Java In Action](https://www.manning.com/books/modern-java-in-action)
+- [Netty in Action](https://www.manning.com/books/netty-in-action)
