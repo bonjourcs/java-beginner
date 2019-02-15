@@ -48,6 +48,14 @@ public class ReduceUtilsTest {
     }
 
     @Test
+    public void testSumCalories() {
+
+        int sum = fishes.stream().mapToInt(Fish::getCalories).sum();
+        Assert.assertEquals(280, sum);
+
+    }
+
+    @Test
     public void findMax() {
         assertEquals(5, (int) ReduceUtils.findMax(integers.stream()).get());
     }

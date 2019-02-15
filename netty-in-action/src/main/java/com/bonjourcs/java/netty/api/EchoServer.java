@@ -34,7 +34,7 @@ public class EchoServer {
 
     }
 
-    public void start() throws InterruptedException {
+    private void start() throws InterruptedException {
 
         final EchoServerHandler handler = new EchoServerHandler();
         EventLoopGroup group = new NioEventLoopGroup();
