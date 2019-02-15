@@ -9,10 +9,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -48,11 +45,27 @@ public class ReduceUtilsTest {
     }
 
     @Test
+    public void testSummarize() {
+
+        // summarize
+        IntSummaryStatistics statistics =
+                fishes.stream().collect(Collectors.summarizingInt(Fish::getCalories));
+
+        Assert.assertEquals(5, statistics.getCount());
+        Assert.assertEquals(280, statistics.getSum());
+        Assert.assertEquals(10, statistics.getMin());
+        Assert.assertEquals(100, statistics.getMax());
+        Assert.assertEquals(56.0, statistics.getAverage(), 0.0);
+
+    }
+
+    @Test
     public void testSumCalories() {
 
         int sum = fishes.stream().mapToInt(Fish::getCalories).sum();
         Assert.assertEquals(280, sum);
 
+        fishes.stream().collect(Collectors.averagingInt(Fish::getCalories));
     }
 
     @Test
