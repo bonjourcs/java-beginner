@@ -51,7 +51,10 @@ public class ReduceUtilsTest {
         String result = fishes.stream().map(Fish::getName)
                 .collect(Collectors.joining(","));
 
-        Assert.assertEquals(expect,result);
+        Assert.assertEquals(expect, result);
+
+        result = fishes.stream().map(Fish::getName).reduce((x, y) -> x + y).get();
+        Assert.assertEquals(expect, result);
 
     }
 
