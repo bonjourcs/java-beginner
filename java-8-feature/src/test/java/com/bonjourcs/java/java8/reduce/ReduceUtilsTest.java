@@ -45,6 +45,17 @@ public class ReduceUtilsTest {
     }
 
     @Test
+    public void testJoining() {
+
+        String expect = "fish1,fish2,fish3,fish4,fish5";
+        String result = fishes.stream().map(Fish::getName)
+                .collect(Collectors.joining(","));
+
+        Assert.assertEquals(expect,result);
+
+    }
+
+    @Test
     public void testSummarize() {
 
         // summarize
