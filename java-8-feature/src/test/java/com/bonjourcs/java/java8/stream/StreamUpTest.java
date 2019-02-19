@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -82,4 +83,12 @@ public class StreamUpTest {
 
     }
 
+    @Test
+    public void testFlatMapping() {
+
+        Assert.assertEquals(2, Stream.of(Arrays.asList("a"), Arrays.asList("b"))
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList()).size());
+
+    }
 }
