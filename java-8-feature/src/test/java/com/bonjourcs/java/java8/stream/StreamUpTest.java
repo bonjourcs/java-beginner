@@ -1,13 +1,13 @@
 package com.bonjourcs.java.java8.stream;
 
+import com.sun.javafx.image.IntPixelGetter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -91,4 +91,30 @@ public class StreamUpTest {
                 .collect(Collectors.toList()).size());
 
     }
+
+    @Test
+    public void testGeneratePrime() {
+
+        Map<Boolean, List<Integer>> map = IntStream.rangeClosed(2, 100000)
+                .boxed()
+                .collect(Collectors.partitioningBy(this::isPrime));
+
+        Assert.assertEquals(9592, map.get(true).size());
+
+    }
+
+    /**
+     * prime predicate
+     *
+     * @param num number to judge
+     * @return given number is prime number
+     */
+    private boolean isPrime(int num) {
+
+        int medium = (int) Math.sqrt(num);
+        return IntStream.rangeClosed(2, medium)
+                .noneMatch(i -> num % i == 0);
+
+    }
+
 }
