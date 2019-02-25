@@ -168,4 +168,24 @@ public class ReduceUtilsTest {
         Assert.assertEquals(4181, array[19]);
 
     }
+
+    @Test
+    public void testMapPartition() {
+
+        // use map as partition method
+        Map<Boolean, List<Fish>> partition =
+                fishes.stream()
+                        .collect(Collectors.groupingBy(fish -> fish.getCalories() >= 50));
+        Assert.assertEquals(4, partition.get(true).size());
+
+    }
+
+    @Test
+    public void testPartition() {
+
+        Map<Boolean, List<Fish>> partition = fishes.stream().collect(Collectors.partitioningBy(fish -> fish.getCalories() >= 50));
+        Assert.assertEquals(4, partition.get(true).size());
+
+    }
+
 }
