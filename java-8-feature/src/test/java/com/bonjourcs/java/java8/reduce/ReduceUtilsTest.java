@@ -45,6 +45,20 @@ public class ReduceUtilsTest {
     }
 
     @Test
+    public void testCollectorFunction() {
+
+        // filter and count
+        int size = fishes.stream().filter(fish -> fish.getCalories() > 50)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), List::size));
+        Assert.assertEquals(2, size);
+
+        size = (int) fishes.stream().filter(fish -> fish.getCalories() > 50)
+                .count();
+        Assert.assertEquals(2, size);
+
+    }
+
+    @Test
     public void testJoining() {
 
         String expect = "fish1,fish2,fish3,fish4,fish5";

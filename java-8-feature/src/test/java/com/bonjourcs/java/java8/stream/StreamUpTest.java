@@ -103,7 +103,7 @@ public class StreamUpTest {
 
     }
 
-    /**
+     /**
      * prime predicate
      *
      * @param num number to judge
