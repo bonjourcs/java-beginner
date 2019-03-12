@@ -1,6 +1,6 @@
 package com.bonjourcs.java.java8.stream;
 
-import com.sun.javafx.image.IntPixelGetter;
+import com.bonjourcs.java.java8.collect.PrimeNumberCollector;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -103,7 +103,25 @@ public class StreamUpTest {
 
     }
 
-     /**
+    @Test
+    public void testCustomPrimeNumberCollector() {
+        Assert.assertTrue(calculateDuration(false) > calculateDuration(true));
+    }
+
+    private long calculateDuration(boolean custom) {
+
+        long start = System.currentTimeMillis();
+        if (custom) {
+            partitionPrimeNumberWithCustomCollector(1_000_000);
+        } else {
+            partitionPrimeNumber(1_000_000);
+        }
+        long end = System.currentTimeMillis();
+
+        return end - start;
+    }
+
+    /**
      * prime predicate
      *
      * @param num number to judge
@@ -115,6 +133,18 @@ public class StreamUpTest {
         return IntStream.rangeClosed(2, medium)
                 .noneMatch(i -> num % i == 0);
 
+    }
+
+    private Map<Boolean, List<Integer>> partitionPrimeNumber(int n) {
+        return IntStream.rangeClosed(2, n)
+                .boxed()
+                .collect(Collectors.partitioningBy(this::isPrime));
+    }
+
+    private Map<Boolean, List<Integer>> partitionPrimeNumberWithCustomCollector(int n) {
+        return IntStream.rangeClosed(2, n)
+                .boxed()
+                .collect(new PrimeNumberCollector());
     }
 
 }

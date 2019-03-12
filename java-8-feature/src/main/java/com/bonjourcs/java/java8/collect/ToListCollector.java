@@ -42,7 +42,6 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
     @Override
     public Set<Characteristics> characteristics() {
         return Collections.unmodifiableSet(EnumSet.of(
-                UNORDERED,
                 CONCURRENT,
                 IDENTITY_FINISH
         ));

@@ -26,4 +26,26 @@ public class StreamUp {
 
     }
 
+    /**
+     * takeWhile method in java 8
+     *
+     * @param list      list to take
+     * @param predicate predicate
+     * @param <A>       element type
+     * @return result list
+     */
+    public static <A> List<A> takeWhile(List<A> list, Predicate<A> predicate) {
+
+        int i = 0;
+
+        for (A item : list) {
+            if (!predicate.test(item)) {
+                return list.subList(0, i);
+            }
+            i++;
+        }
+
+        return list;
+    }
+
 }
