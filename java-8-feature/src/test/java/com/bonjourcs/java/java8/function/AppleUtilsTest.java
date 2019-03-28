@@ -41,6 +41,13 @@ public class AppleUtilsTest {
     }
 
     @Test
+    public void testShowAppleInfo() {
+
+        AppleUtils.showAppleInfo(apples, apple -> apple.getWeight() + " " + apple.getColor());
+
+    }
+
+    @Test
     public void testFilterApples() {
 
         // filter green apple
@@ -195,7 +202,7 @@ public class AppleUtilsTest {
 
     @Test
     public void testComposingFunction() {
-        Assert.assertEquals(4.5, integrate(arg -> arg + 2, 2, 3),0);
+        Assert.assertEquals(4.5, integrate(arg -> arg + 2, 2, 3), 0);
     }
 
     private double integrate(DoubleFunction<Double> f, double a, double b) {

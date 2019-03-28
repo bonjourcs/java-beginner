@@ -41,4 +41,15 @@ public class AppleUtils {
         return apple.getWeight() > 150;
     }
 
+
+    /**
+     * show apple info
+     *
+     * @param apples             apples to show info
+     * @param showAppleInterface show interface
+     */
+    public static void showAppleInfo(List<Apple> apples, ShowAppleInterface showAppleInterface) {
+        apples.forEach(e -> System.out.println(showAppleInterface.show(e)));
+    }
+
 }
