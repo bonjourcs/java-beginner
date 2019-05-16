@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -145,6 +146,27 @@ public class StreamUpTest {
         return IntStream.rangeClosed(2, n)
                 .boxed()
                 .collect(new PrimeNumberCollector());
+    }
+
+    @Test
+    public void testGenerateFibonacci() {
+
+        IntStream.generate(new IntSupplier() {
+
+            private int current = 0;
+            private int next = 1;
+
+            @Override
+            public int getAsInt() {
+                int tmp = current;
+                current = next;
+                next = tmp + current;
+                return tmp;
+            }
+
+        }).limit(30)
+                .forEach(System.out::println);
+
     }
 
 }
