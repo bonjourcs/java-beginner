@@ -1,6 +1,9 @@
 package com.bonjourcs.java.java8.stream;
 
 import com.bonjourcs.java.java8.collect.PrimeNumberCollector;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -168,5 +171,47 @@ public class StreamUpTest {
                 .forEach(System.out::println);
 
     }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    class Fish {
+
+        /**
+         * fish color
+         */
+        private String color;
+
+        /**
+         * fish weight
+         */
+        private int weight;
+
+    }
+
+    @Test
+    public void testMapWithMax() {
+
+        List<Fish> fishes = Arrays.asList(
+                new Fish("blue", 100),
+                new Fish("blue", 80),
+                new Fish("blue", 70),
+                new Fish("yellow", 100),
+                new Fish("yellow", 10),
+                new Fish("black", 100),
+                new Fish("black", 10),
+                new Fish("black", 100),
+                new Fish("black", 1000)
+        );
+
+        Map<String, Optional<Fish>> map = fishes.stream()
+                .collect(Collectors.groupingBy(Fish::getColor,
+                        Collectors.maxBy(Comparator.comparingInt(Fish::getWeight))));
+
+        // not Optional.empty();
+        Assert.assertNull(map.get("pink"));
+
+    }
+
 
 }
