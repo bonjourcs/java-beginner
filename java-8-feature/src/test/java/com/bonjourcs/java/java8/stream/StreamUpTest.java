@@ -211,6 +211,13 @@ public class StreamUpTest {
         // not Optional.empty();
         Assert.assertNull(map.get("pink"));
 
+        // this returns a Map<String,Fish> entity
+        Map<String, Fish> map1 = fishes.stream()
+                .collect(Collectors.groupingBy(Fish::getColor,
+                        Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Fish::getWeight)),
+                                Optional::get)));
+        Assert.assertNull(map1.get("pink"));
+
     }
 
 
