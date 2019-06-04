@@ -1,23 +1,24 @@
 package com.bonjourcs.java.java8.parallel;
 
-import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
+import org.openjdk.jmh.annotations.*;
 
-import static org.junit.Assert.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Liang Chenghao
  * Description:
  * Date: 2019/3/15
  */
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@Fork(value = 2, jvmArgs = {"-Xms4G", "-Xmx4G"})
+@State(Scope.Benchmark)
 public class ParallelUtilsTest {
 
-    private ParallelUtils parallelUtils;
-
-    @Before
-    public void init() {
-        parallelUtils = new ParallelUtils();
-    }
+    private static final ParallelUtils parallelUtils = new ParallelUtils();
+    private static long COUNT = 1_000_000;
 
     @Test
     public void sum() {
@@ -38,4 +39,18 @@ public class ParallelUtilsTest {
     public void parallelSum() {
 
     }
+
+    @Test
+    @Benchmark
+    public void testSequentialSum() {
+        parallelUtils.sum(COUNT);
+    }
+
+
+    @After
+    @TearDown(Level.Invocation)
+    public void tearDown() {
+        System.gc();
+    }
+
 }
