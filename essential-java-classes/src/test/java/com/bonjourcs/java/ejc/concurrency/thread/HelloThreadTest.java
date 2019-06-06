@@ -2,6 +2,8 @@ package com.bonjourcs.java.ejc.concurrency.thread;
 
 import org.junit.Test;
 
+import java.util.Random;
+
 /**
  * @author Liang Chenghao
  * Description:
@@ -16,4 +18,13 @@ public class HelloThreadTest {
         new Thread(t).start();
 
     }
+
+    @Test
+    public void testGenerateRandom() {
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(new Random().nextInt(10000));
+        }
+    }
+
 }

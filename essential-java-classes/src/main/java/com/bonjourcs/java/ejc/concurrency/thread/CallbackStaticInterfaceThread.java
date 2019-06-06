@@ -21,7 +21,7 @@ public class CallbackStaticInterfaceThread implements Runnable {
 
         // sleep for random time
         try {
-            long sleepTime = new Random().nextInt(10000) & Integer.MAX_VALUE;
+            long sleepTime = new Random().nextInt(1000) & Integer.MAX_VALUE;
             Thread.sleep(sleepTime);
             CallbackStaticInterface.displayInfo(threadName, sleepTime);
         } catch (InterruptedException e) {

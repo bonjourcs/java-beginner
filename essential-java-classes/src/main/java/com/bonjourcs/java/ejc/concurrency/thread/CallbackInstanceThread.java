@@ -21,7 +21,7 @@ public class CallbackInstanceThread implements Runnable {
     @Override
     public void run() {
 
-        long time = new Random().nextInt(10000);
+        long time = new Random().nextInt(1000);
         try {
             Thread.sleep(time);
             callbackInstanceInterface.displayInfo(threadName, time);
