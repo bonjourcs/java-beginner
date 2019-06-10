@@ -17,9 +17,11 @@ public class CallbackInstanceInterface {
         System.out.println(threadName + " spend: " + time + " ms");
     }
 
-    public void startThread(){
+    public void startThread() {
         CallbackInstanceThread thread = new CallbackInstanceThread(threadName, this);
-        new Thread(thread).start();
+        Thread t = new Thread(thread);
+        t.setPriority(8);
+        t.start();
     }
 
 }
