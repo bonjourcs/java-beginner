@@ -12,10 +12,13 @@ import java.util.Random;
 public class HelloThreadTest {
 
     @Test
-    public void testHelloThread() {
+    public void testHelloThread() throws InterruptedException {
 
         HelloThread t = new HelloThread();
         new Thread(t).start();
+        Thread.sleep(1000);
+        System.out.println("Main thread is running...");
+
 
     }
 
