@@ -1,6 +1,8 @@
 package com.bonjourcs.java.ejc.concurrency.synchronize;
 
 import java.util.Arrays;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Liang Chenghao
@@ -10,6 +12,8 @@ import java.util.Arrays;
 public class UnsafeBank {
 
     private int[] accounts;
+
+    private Lock bankLock = new ReentrantLock();
 
     public void init(int accountNum, int initMoney) {
 
@@ -32,6 +36,18 @@ public class UnsafeBank {
         System.out.println();
 
     }
+
+    public void safeTransferWithLock(int form, int to, int amount) {
+
+        bankLock.lock();
+        try {
+            transfer(form, to, amount);
+        } finally {
+            bankLock.unlock();
+        }
+
+    }
+
 
     public int getBalance() {
 

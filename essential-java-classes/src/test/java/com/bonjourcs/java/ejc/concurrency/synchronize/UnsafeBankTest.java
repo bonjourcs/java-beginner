@@ -2,7 +2,6 @@ package com.bonjourcs.java.ejc.concurrency.synchronize;
 
 import org.junit.Test;
 
-import javax.crypto.spec.DESedeKeySpec;
 import java.util.Random;
 
 /**
@@ -34,7 +33,8 @@ public class UnsafeBankTest {
             Runnable runnable = () -> {
                 while (true) {
                     int toAccount = random.nextInt(BANK_COUNT);
-                    bank.transfer(fromAccount, toAccount, random.nextInt(DEFAULT_TRANSFER));
+//                    bank.transfer(fromAccount, toAccount, random.nextInt(DEFAULT_TRANSFER));
+                    bank.safeTransferWithLock(fromAccount, toAccount, random.nextInt(DEFAULT_TRANSFER));
                     try {
                         Thread.sleep(random.nextInt(DELAY));
                     } catch (InterruptedException e) {
