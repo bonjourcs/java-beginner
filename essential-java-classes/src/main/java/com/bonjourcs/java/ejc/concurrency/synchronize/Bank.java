@@ -14,25 +14,24 @@ public class Bank {
 
     private int[] accounts;
 
-    private Condition sufficentFunds;
+    private Lock bankLock;
+    private Condition sufficientFunds;
 
     public Bank() {
-        sufficentFunds = bankLock.newCondition();
+        bankLock = new ReentrantLock();
+        sufficientFunds = bankLock.newCondition();
     }
 
-    private Lock bankLock = new ReentrantLock();
 
     public void init(int accountNum, int initMoney) {
-
         accounts = new int[accountNum];
         Arrays.fill(accounts, initMoney);
-
     }
 
     public void transfer(int from, int to, int amount) throws InterruptedException {
 
         while (accounts[from] < amount) {
-            sufficentFunds.await();
+            sufficientFunds.await();
         }
 
         System.out.print(Thread.currentThread() + " ");
@@ -42,7 +41,7 @@ public class Bank {
         System.out.printf(" Bank balance: %d", getBalance());
         System.out.println();
 
-        sufficentFunds.signalAll();
+        sufficientFunds.signalAll();
 
     }
 
