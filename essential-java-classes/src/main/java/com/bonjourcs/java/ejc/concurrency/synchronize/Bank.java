@@ -59,11 +59,16 @@ public class Bank {
 
     public int getBalance() {
 
-        int sum = 0;
-        for (int a : accounts) {
-            sum += a;
+        bankLock.lock();
+        try {
+            int sum = 0;
+            for (int a : accounts) {
+                sum += a;
+            }
+            return sum;
+        } finally {
+            bankLock.unlock();
         }
-        return sum;
 
     }
 }
