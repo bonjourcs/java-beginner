@@ -9,20 +9,20 @@ import java.util.Random;
  * Description:
  * Date: 2019/7/1
  */
-public class UnsafeBankTest {
+public class BankTest {
 
     private final int BANK_COUNT = 10;
 
     private final int INIT_MONEY = 1000;
 
-    private final int DEFAULT_TRANSFER = 500;
+    private final int DEFAULT_TRANSFER = 1100;
 
     private final int DELAY = 10;
 
     @Test
     public void testUnsafeBankTransferTest() throws InterruptedException {
 
-        UnsafeBank bank = new UnsafeBank();
+        Bank bank = new Bank();
         bank.init(BANK_COUNT, INIT_MONEY);
         Random random = new Random();
 
@@ -34,7 +34,11 @@ public class UnsafeBankTest {
                 while (true) {
                     int toAccount = random.nextInt(BANK_COUNT);
 //                    bank.transfer(fromAccount, toAccount, random.nextInt(DEFAULT_TRANSFER));
-                    bank.safeTransferWithLock(fromAccount, toAccount, random.nextInt(DEFAULT_TRANSFER));
+                    try {
+                        bank.safeTransferWithLock(fromAccount, toAccount, random.nextInt(DEFAULT_TRANSFER));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     try {
                         Thread.sleep(random.nextInt(DELAY));
                     } catch (InterruptedException e) {

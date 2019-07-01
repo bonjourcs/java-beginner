@@ -1,6 +1,7 @@
 package com.bonjourcs.java.ejc.concurrency.synchronize;
 
 import java.util.Arrays;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -9,9 +10,15 @@ import java.util.concurrent.locks.ReentrantLock;
  * Description: unsafe bank
  * Date: 2019/7/1
  */
-public class UnsafeBank {
+public class Bank {
 
     private int[] accounts;
+
+    private Condition sufficentFunds;
+
+    public Bank() {
+        sufficentFunds = bankLock.newCondition();
+    }
 
     private Lock bankLock = new ReentrantLock();
 
@@ -22,10 +29,10 @@ public class UnsafeBank {
 
     }
 
-    public void transfer(int from, int to, int amount) {
+    public void transfer(int from, int to, int amount) throws InterruptedException {
 
-        if (accounts[from] < amount) {
-            return;
+        while (accounts[from] < amount) {
+            sufficentFunds.await();
         }
 
         System.out.print(Thread.currentThread() + " ");
@@ -35,9 +42,11 @@ public class UnsafeBank {
         System.out.printf(" Bank balance: %d", getBalance());
         System.out.println();
 
+        sufficentFunds.signalAll();
+
     }
 
-    public void safeTransferWithLock(int form, int to, int amount) {
+    public void safeTransferWithLock(int form, int to, int amount) throws InterruptedException {
 
         bankLock.lock();
         try {
