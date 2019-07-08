@@ -15,7 +15,7 @@ public class BankTest {
 
     private final int INIT_MONEY = 1000;
 
-    private final int DEFAULT_TRANSFER = 1100;
+    private final int DEFAULT_TRANSFER = 3000;
 
     private final int DELAY = 10;
 
@@ -52,7 +52,7 @@ public class BankTest {
 
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(100000);
 
     }
 

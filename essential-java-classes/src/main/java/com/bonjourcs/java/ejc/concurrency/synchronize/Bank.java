@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author Liang Chenghao
@@ -16,10 +17,16 @@ public class Bank {
 
     private Lock bankLock;
     private Condition sufficientFunds;
+    private ReentrantReadWriteLock readWriteLock;
+    private Lock readLock;
+    private Lock writeLock;
 
     public Bank() {
         bankLock = new ReentrantLock();
         sufficientFunds = bankLock.newCondition();
+        readWriteLock = new ReentrantReadWriteLock();
+        readLock = readWriteLock.readLock();
+        writeLock = readWriteLock.writeLock();
     }
 
 
@@ -30,9 +37,9 @@ public class Bank {
 
     public void transfer(int from, int to, int amount) throws InterruptedException {
 
-        while (accounts[from] < amount) {
-            sufficientFunds.await();
-        }
+//        while (accounts[from] < amount) {
+//            sufficientFunds.await();
+//        }
 
         System.out.print(Thread.currentThread() + " ");
         accounts[from] -= amount;
@@ -41,17 +48,19 @@ public class Bank {
         System.out.printf(" Bank balance: %d", getBalance());
         System.out.println();
 
-        sufficientFunds.signalAll();
+//        sufficientFunds.signalAll();
 
     }
 
     public void safeTransferWithLock(int form, int to, int amount) throws InterruptedException {
 
-        bankLock.lock();
+//        bankLock.lock();
+        writeLock.lock();
         try {
             transfer(form, to, amount);
         } finally {
-            bankLock.unlock();
+//            bankLock.unlock();
+            writeLock.unlock();
         }
 
     }
@@ -59,7 +68,8 @@ public class Bank {
 
     public int getBalance() {
 
-        bankLock.lock();
+//        bankLock.lock();
+        readLock.lock();
         try {
             int sum = 0;
             for (int a : accounts) {
@@ -67,7 +77,8 @@ public class Bank {
             }
             return sum;
         } finally {
-            bankLock.unlock();
+//            bankLock.unlock();
+            readLock.unlock();
         }
 
     }
