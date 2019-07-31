@@ -52,7 +52,7 @@ public class BankTest {
 
         }
 
-        Thread.sleep(5000);
+        Thread.sleep(500);
 
     }
 
