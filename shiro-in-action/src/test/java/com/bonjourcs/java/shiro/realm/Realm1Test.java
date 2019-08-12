@@ -1,6 +1,7 @@
 package com.bonjourcs.java.shiro.realm;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
@@ -15,7 +16,6 @@ import org.junit.Test;
  * Date: 2019/8/1
  */
 public class Realm1Test {
-
 
     @Test
     public void test() {
@@ -32,4 +32,26 @@ public class Realm1Test {
         Assert.assertTrue(subject.isAuthenticated());
 
     }
+
+    @Test(expected = UnknownAccountException.class)
+    public void testAllSuccessfulRealm() {
+
+        login("classpath:shiro-authenticator-all-success.ini");
+
+    }
+
+    private void login(String configFile) {
+
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory(configFile);
+        SecurityManager securityManager = factory.getInstance();
+
+        SecurityUtils.setSecurityManager(securityManager);
+
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
+
+        subject.login(token);
+
+    }
+
 }
