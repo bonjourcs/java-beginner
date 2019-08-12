@@ -36,11 +36,11 @@ public class Realm1Test {
     @Test(expected = UnknownAccountException.class)
     public void testAllSuccessfulRealm() {
 
-        login("classpath:shiro-authenticator-all-success.ini");
+        login("classpath:shiro-authenticator-all-success.ini", "zhang", "123");
 
     }
 
-    private void login(String configFile) {
+    private void login(String configFile, String username, String password) {
 
         Factory<SecurityManager> factory = new IniSecurityManagerFactory(configFile);
         SecurityManager securityManager = factory.getInstance();
@@ -48,7 +48,7 @@ public class Realm1Test {
         SecurityUtils.setSecurityManager(securityManager);
 
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
         subject.login(token);
 
