@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.DoubleFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -209,4 +210,12 @@ public class AppleUtilsTest {
         return (f.apply(a) + f.apply(b)) * (b - a) / 2;
     }
 
+    @Test
+    public void testBiFunction(){
+
+        BiFunction<String,Integer,Apple> function = Apple::new;
+        Apple apple = function.apply("Red", 50);
+
+        Assert.assertEquals(50, apple.getWeight());
+    }
 }
