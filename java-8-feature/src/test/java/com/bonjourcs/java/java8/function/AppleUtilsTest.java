@@ -232,4 +232,18 @@ public class AppleUtilsTest {
         Assert.assertTrue(predicate.test(apple));
 
     }
+
+    @Test
+    public void testMethodCombination() {
+
+        Function<Integer, Integer> f = x -> x + 1;
+        Function<Integer, Integer> g = x -> x * 5;
+
+        int result = f.andThen(g).apply(1);
+        Assert.assertEquals(10, result);
+
+        result = f.compose(g).apply(1);
+        Assert.assertEquals(6, result);
+
+    }
 }
