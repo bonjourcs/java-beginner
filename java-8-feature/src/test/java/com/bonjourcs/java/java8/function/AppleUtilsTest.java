@@ -211,11 +211,25 @@ public class AppleUtilsTest {
     }
 
     @Test
-    public void testBiFunction(){
+    public void testBiFunction() {
 
-        BiFunction<String,Integer,Apple> function = Apple::new;
+        BiFunction<String, Integer, Apple> function = Apple::new;
         Apple apple = function.apply("Red", 50);
 
         Assert.assertEquals(50, apple.getWeight());
+    }
+
+    @Test
+    public void testPredicateCombination() {
+
+        Predicate<Apple> predicate = apple -> apple.getColor()
+                .equals("RED");
+
+        predicate = predicate.and(apple -> apple.getWeight() > 100)
+                .and(apple -> apple.getWeight() < 300);
+        Apple apple = new Apple("RED", 255);
+
+        Assert.assertTrue(predicate.test(apple));
+
     }
 }
