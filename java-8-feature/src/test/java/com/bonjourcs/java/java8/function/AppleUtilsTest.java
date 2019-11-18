@@ -8,10 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.DoubleFunction;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 /**
  * @author Liang Chenghao
