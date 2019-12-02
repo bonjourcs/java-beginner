@@ -1,6 +1,9 @@
 package com.bonjourcs.java.java8.reduce;
 
 import com.bonjourcs.java.java8.entity.Fish;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -202,4 +205,37 @@ public class ReduceUtilsTest {
 
     }
 
+    @Test
+    public void testOptionalSum() {
+
+        List<Integer> array = new ArrayList<>();
+        Optional<Integer> sum = array.stream().reduce(Integer::sum);
+        Assert.assertFalse(sum.isPresent());
+
+        array.add(1);
+        array.add(2);
+        int intSum = array.stream().reduce(0, Integer::sum);
+        Assert.assertEquals(3, intSum);
+
+
+        List<Cat> cats = Arrays.asList(
+                new Cat(1, "fish1"),
+                new Cat(2, "fish2"),
+                new Cat(3, "fish3")
+        );
+        int totalWeight = cats.stream().mapToInt(Cat::getWeight)
+                .sum();
+        Assert.assertEquals(6, totalWeight);
+
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    class Cat {
+        private int weight;
+        private String name;
+    }
+
 }
+
