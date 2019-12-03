@@ -1,5 +1,6 @@
 package com.bonjourcs.java.java8.stream;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bonjourcs.java.java8.collect.PrimeNumberCollector;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -220,5 +222,24 @@ public class StreamUpTest {
 
     }
 
+
+    @Test
+    public void testStreamGenerate() {
+
+        Supplier<Foo> fooSupplier = () -> {
+            Foo foo = new Foo();
+            foo.setDate(new Date(System.currentTimeMillis()));
+            return foo;
+        };
+
+        Stream.generate(fooSupplier).limit(3).forEach(e ->
+                System.out.println(JSONObject.toJSONString(e)));
+
+    }
+
+    @Data
+    class Foo {
+        private Date date;
+    }
 
 }
