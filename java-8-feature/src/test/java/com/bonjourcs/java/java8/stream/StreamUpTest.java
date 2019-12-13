@@ -242,4 +242,14 @@ public class StreamUpTest {
         private Date date;
     }
 
+    @Test
+    public void testJoining() {
+
+        String str = Stream.of("Hello", "World", "Java")
+                .collect(Collectors.joining(",", "[", "]"));
+        String result = "[Hello,World,Java]";
+        Assert.assertEquals(result, str);
+
+    }
+
 }
