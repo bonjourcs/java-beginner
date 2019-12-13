@@ -93,8 +93,13 @@ public class StreamUpTest {
     public void testFlatMapping() {
 
         Assert.assertEquals(2, Stream.of(Arrays.asList("a"), Arrays.asList("b"))
+                .flatMap(Collection::stream).count());
+
+        List<String> stringList = Stream.of(Arrays.asList("1", "2", "3"), Arrays.asList("4", "5", "6"))
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList()).size());
+                .collect(Collectors.toList());
+        List<String> resultList = Arrays.asList("1", "2", "3", "4", "5", "6");
+        Assert.assertEquals(resultList, stringList);
 
     }
 
