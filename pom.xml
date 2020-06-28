@@ -27,6 +27,7 @@
         <module>java-8-feature</module>
         <module>netty-in-action</module>
         <module>shiro-in-action</module>
+        <module>learn-mybatis</module>
     </modules>
 
     <dependencies>
